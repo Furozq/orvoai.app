@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORVO AI - Website Monitoring with AI Power</title>
+    <meta name="description" content="Predict downtime before it happens. 88 AI Pro monitors your websites with intelligent predictions.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        *{font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+        [data-theme="dark"]{--bg:#050505;--bg2:#0a0a0a;--bg3:#111;--text:#f5f5f5;--text2:#888;--text3:#555;--border:#1a1a1a}
+        [data-theme="light"]{--bg:#fff;--bg2:#fafafa;--bg3:#f5f5f5;--text:#111;--text2:#666;--text3:#999;--border:#eee}
+        body{background:var(--bg);color:var(--text)}
+        .text-2{color:var(--text2)}.text-3{color:var(--text3)}
+        .bg-2{background:var(--bg2)}.bg-3{background:var(--bg3)}
+        .border-c{border-color:var(--border)}
+        .btn{padding:12px 28px;border-radius:10px;font-weight:500;font-size:14px;transition:all .2s}
+        .btn-p{background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;box-shadow:0 4px 20px rgba(139,92,246,0.3)}
+        .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,0.4)}
+        .btn-s{background:var(--bg2);color:var(--text);border:1px solid var(--border)}
+        .btn-s:hover{border-color:#8b5cf6;background:rgba(139,92,246,0.05)}
+        .card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;transition:all .25s}
+        .card:hover{border-color:rgba(139,92,246,0.3);box-shadow:0 10px 40px rgba(139,92,246,0.1)}
+        .bot-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;transition:all .25s;position:relative;overflow:hidden}
+        .bot-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s}
+        .bot-card:hover::before{opacity:1}
+        .bot-card:hover{border-color:transparent;transform:translateY(-2px)}
+        .bot-card.orange::before{background:linear-gradient(135deg,rgba(249,115,22,0.1),transparent)}
+        .bot-card.orange:hover{border-color:rgba(249,115,22,0.3)}
+        .bot-card.blue::before{background:linear-gradient(135deg,rgba(59,130,246,0.1),transparent)}
+        .bot-card.blue:hover{border-color:rgba(59,130,246,0.3)}
+        .bot-card.yellow::before{background:linear-gradient(135deg,rgba(234,179,8,0.1),transparent)}
+        .bot-card.yellow:hover{border-color:rgba(234,179,8,0.3)}
+        .bot-card.purple::before{background:linear-gradient(135deg,rgba(139,92,246,0.1),transparent)}
+        .bot-card.purple:hover{border-color:rgba(139,92,246,0.3)}
+        .bot-card.green::before{background:linear-gradient(135deg,rgba(34,197,94,0.1),transparent)}
+        .bot-card.green:hover{border-color:rgba(34,197,94,0.3)}
+        .bot-card.red::before{background:linear-gradient(135deg,rgba(239,68,68,0.1),transparent)}
+        .bot-card.red:hover{border-color:rgba(239,68,68,0.3)}
+        .bot-card.cyan::before{background:linear-gradient(135deg,rgba(6,182,212,0.1),transparent)}
+        .bot-card.cyan:hover{border-color:rgba(6,182,212,0.3)}
+        .bot-card.pink::before{background:linear-gradient(135deg,rgba(236,72,153,0.1),transparent)}
+        .bot-card.pink:hover{border-color:rgba(236,72,153,0.3)}
+        .lang-btn{transition:all .2s}.lang-btn.active{background:linear-gradient(135deg,#8b5cf6,#06b6d4);color:#fff}
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height .3s}
+        .faq-item.open .faq-answer{max-height:200px}
+        .faq-item.open .faq-icon{transform:rotate(45deg)}
+        html{scroll-behavior:smooth}
+        h1,h2{letter-spacing:-0.03em}
+        ::selection{background:rgba(139,92,246,0.3)}
+        .hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+        .hero-bg::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 30%,rgba(139,92,246,0.08) 0%,transparent 50%)}
+        .hero-bg::after{content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;background:radial-gradient(circle at 70% 60%,rgba(6,182,212,0.06) 0%,transparent 50%)}
+        .ai-glow{box-shadow:0 0 60px rgba(139,92,246,0.15),0 20px 40px rgba(0,0,0,0.2)}
+        .ssl-glow{box-shadow:0 0 60px rgba(6,182,212,0.15),0 20px 40px rgba(0,0,0,0.2)}
+        .pred-now{background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(6,182,212,0.1));border:1px solid rgba(139,92,246,0.2)}
+        .new-badge{background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600;margin-left:6px}
+    </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-c backdrop-blur-xl" style="background:rgba(5,5,5,0.8)">
+    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+        <div class="flex items-center gap-6">
+            <a href="#" class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-violet-500/20">O</div>
+                <span class="font-semibold text-lg">ORVO AI</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm text-2">
+                <a href="#features" class="hover:text-white transition">Features</a>
+                <a href="#ai" class="hover:text-white transition">88 AI Pro</a>
+                <a href="#ssl" class="hover:text-white transition">SSL</a>
+                <a href="#pricing" class="hover:text-white transition">Pricing</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="hidden sm:flex gap-1 text-xs bg-2 p-1 rounded-lg">
+                <button onclick="setLang('en')" class="lang-btn px-2.5 py-1 rounded-md active" data-lang="en">EN</button>
+                <button onclick="setLang('tr')" class="lang-btn px-2.5 py-1 rounded-md" data-lang="tr">TR</button>
+            </div>
+            <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-2 transition">
+                <svg id="sunIcon" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                <svg id="moonIcon" class="w-[18px] h-[18px] hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            </button>
+            <a href="#pricing" class="btn btn-p text-sm hidden sm:inline-flex" data-i18n="nav.start">Get Started</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="min-h-screen flex items-center justify-center pt-14 relative">
+    <div class="hero-bg"></div>
+    <div class="max-w-3xl mx-auto px-6 text-center py-32 relative z-10">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-2 border border-c text-sm text-2 mb-8">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+            <span data-i18n="hero.badge">🔮 Predict Downtime Before It Happens</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 tracking-tight leading-[1.1]">
+            <span data-i18n="hero.t1">Warns Before</span><br>
+            <span class="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent" data-i18n="hero.t2">It Falls.</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-2 mb-10 max-w-xl mx-auto leading-relaxed" data-i18n="hero.sub">
+            AI-powered website monitoring. SSL certificate tracking, public status pages, instant alerts with 88 AI Pro predictions.
+        </p>
+        
+        <div class="flex flex-wrap gap-4 justify-center mb-16">
+            <a href="#pricing" class="btn btn-p text-base" data-i18n="hero.cta1">Start Free Trial</a>
+            <a href="#ai" class="btn btn-s text-base" data-i18n="hero.cta2">See 88 AI Pro</a>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-3">
+            <span>✓ <span data-i18n="hero.f1">No credit card</span></span>
+            <span>✓ <span data-i18n="hero.f2">14-day free trial</span></span>
+            <span>✓ <span data-i18n="hero.f3">Cancel anytime</span></span>
+        </div>
+    </div>
+</section>
+
+<!-- Stats -->
+<section class="border-y border-c bg-2">
+    <div class="max-w-5xl mx-auto px-6 py-14 grid grid-cols-3 gap-8 text-center">
+        <div>
+            <div class="text-4xl font-semibold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">99.9%</div>
+            <div class="text-sm text-2 mt-1" data-i18n="stats.uptime">Uptime</div>
+        </div>
+        <div>
+            <div class="text-4xl font-semibold bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">24ms</div>
+            <div class="text-sm text-2 mt-1" data-i18n="stats.response">Avg Response</div>
+        </div>
+        <div>
+            <div class="text-4xl font-semibold bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">10K+</div>
+            <div class="text-sm text-2 mt-1" data-i18n="stats.sites">Sites Monitored</div>
+        </div>
+    </div>
+</section>
+
+<!-- 88 AI Pro -->
+<section id="ai" class="py-28 bg-gradient-to-b from-violet-500/5 to-transparent">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <p class="text-sm text-violet-400 font-medium mb-3" data-i18n="ai.badge">🧠 AI Powered</p>
+                <h2 class="text-3xl md:text-4xl font-semibold mb-4">88 AI Pro</h2>
+                <p class="text-lg text-2 mb-10" data-i18n="ai.sub">Multi-factor prediction engine that forecasts your site's health score before problems occur.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center text-lg flex-shrink-0">📈</div>
+                        <div><div class="font-medium mb-1" data-i18n="ai.f1.t">EMA Analysis</div><div class="text-sm text-2" data-i18n="ai.f1.d">Weighted trend detection on recent data</div></div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-lg flex-shrink-0">📊</div>
+                        <div><div class="font-medium mb-1" data-i18n="ai.f2.t">Linear Regression</div><div class="text-sm text-2" data-i18n="ai.f2.d">Statistical future predictions</div></div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-lg flex-shrink-0">🕐</div>
+                        <div><div class="font-medium mb-1" data-i18n="ai.f3.t">Hour Patterns</div><div class="text-sm text-2" data-i18n="ai.f3.d">Learns daily performance cycles</div></div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-lg flex-shrink-0">🎯</div>
+                        <div><div class="font-medium mb-1" data-i18n="ai.f4.t">Confidence Intervals</div><div class="text-sm text-2" data-i18n="ai.f4.d">Best/worst case with ±% range</div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card p-6 ai-glow">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="font-medium">🔮 <span data-i18n="ai.pred">Predictions</span></span>
+                    <span class="text-sm text-emerald-400 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+                        <span data-i18n="ai.stable">Stable</span>
+                    </span>
+                </div>
+                <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div class="pred-now rounded-xl p-4">
+                        <div class="text-xs text-2 mb-1">NOW</div>
+                        <div class="text-2xl font-semibold text-emerald-400">96%</div>
+                    </div>
+                    <div class="bg-3 rounded-xl p-4">
+                        <div class="text-xs text-3 mb-1">5m</div>
+                        <div class="text-2xl font-semibold">94%</div>
+                        <div class="text-xs text-3">±2%</div>
+                    </div>
+                    <div class="bg-3 rounded-xl p-4">
+                        <div class="text-xs text-3 mb-1">15m</div>
+                        <div class="text-2xl font-semibold">92%</div>
+                        <div class="text-xs text-3">±4%</div>
+                    </div>
+                    <div class="bg-3 rounded-xl p-4">
+                        <div class="text-xs text-3 mb-1">30m</div>
+                        <div class="text-2xl font-semibold text-yellow-400">88%</div>
+                        <div class="text-xs text-3">±6%</div>
+                    </div>
+                    <div class="bg-3 rounded-xl p-4">
+                        <div class="text-xs text-3 mb-1">1h</div>
+                        <div class="text-2xl font-semibold text-yellow-400">85%</div>
+                        <div class="text-xs text-3">±8%</div>
+                    </div>
+                </div>
+                <div class="mt-5 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-sm text-emerald-400 flex items-center gap-2">
+                    <span>✓</span>
+                    <span data-i18n="ai.insight">Systems stable, no changes expected</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SSL Monitoring -->
+<section id="ssl" class="py-28">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <p class="text-sm text-cyan-400 font-medium mb-3">SSL Monitoring</p>
+                <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="ssl.title">Never Miss an Expiry</h2>
+                <p class="text-lg text-2 mb-10" data-i18n="ssl.sub">Automatically track SSL certificates for all your monitored sites.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-lg flex-shrink-0">📅</div>
+                        <div><div class="font-medium mb-1" data-i18n="ssl.f1.t">Expiry Tracking</div><div class="text-sm text-2" data-i18n="ssl.f1.d">See days remaining for each certificate</div></div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center text-lg flex-shrink-0">⚠️</div>
+                        <div><div class="font-medium mb-1" data-i18n="ssl.f2.t">Early Warnings</div><div class="text-sm text-2" data-i18n="ssl.f2.d">Alerts at 30, 14, and 7 days before expiry</div></div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-lg flex-shrink-0">✅</div>
+                        <div><div class="font-medium mb-1" data-i18n="ssl.f3.t">Issuer Info</div><div class="text-sm text-2" data-i18n="ssl.f3.d">View certificate authority and validity dates</div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card p-6 ssl-glow">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="font-medium">🔒 SSL Certificates</span>
+                    <span class="text-sm text-emerald-400">All Valid</span>
+                </div>
+                <div class="grid grid-cols-4 gap-3 mb-6 text-center text-sm">
+                    <div class="p-3 rounded-xl bg-emerald-500/10">
+                        <div class="text-2xl font-bold text-emerald-400">2</div>
+                        <div class="text-xs text-3">Valid</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-yellow-500/10">
+                        <div class="text-2xl font-bold text-yellow-400">0</div>
+                        <div class="text-xs text-3">&lt;30d</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-red-500/10">
+                        <div class="text-2xl font-bold text-red-400">0</div>
+                        <div class="text-xs text-3">&lt;7d</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-gray-500/10">
+                        <div class="text-2xl font-bold text-gray-400">0</div>
+                        <div class="text-xs text-3">Expired</div>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-4 rounded-xl bg-emerald-500/10">
+                        <div class="flex items-center gap-3">
+                            <span>✅</span>
+                            <div>
+                                <div class="font-medium text-sm">orvoai.app</div>
+                                <div class="text-xs text-3">Let's Encrypt</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-emerald-400">89d</div>
+                            <div class="text-xs text-3">May 6, 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="py-28 bg-2">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-14">
+            <p class="text-sm text-violet-400 font-medium mb-3">Features</p>
+            <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="feat.title">Core Features</h2>
+            <p class="text-lg text-2" data-i18n="feat.sub">Everything you need for professional monitoring</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="card p-6 group">
+                <div class="text-3xl mb-4 group-hover:scale-110 transition">🔮</div>
+                <h3 class="font-medium mb-2">88 AI Pro</h3>
+                <p class="text-sm text-2" data-i18n="feat.f4.d">5m to 1h predictive forecasts</p>
+            </div>
+            <div class="card p-6 group">
+                <div class="text-3xl mb-4 group-hover:scale-110 transition">🔒</div>
+                <h3 class="font-medium mb-2" data-i18n="feat.f1.t">SSL Monitoring</h3>
+                <p class="text-sm text-2" data-i18n="feat.f1.d">Track certificate expiry with alerts</p>
+            </div>
+            <div class="card p-6 group">
+                <div class="text-3xl mb-4 group-hover:scale-110 transition">⚡</div>
+                <h3 class="font-medium mb-2" data-i18n="feat.f7.t">Instant Alerts</h3>
+                <p class="text-sm text-2" data-i18n="feat.f7.d">Slack, Email, Discord, Webhooks</p>
+            </div>
+            <div class="card p-6 group">
+                <div class="text-3xl mb-4 group-hover:scale-110 transition">🌐</div>
+                <h3 class="font-medium mb-2" data-i18n="feat.f3.t">Public Status</h3>
+                <p class="text-sm text-2" data-i18n="feat.f3.d">Shareable status page with subscribers</p>
+            </div>
+            <div class="card p-6 group">
+                <div class="text-3xl mb-4 group-hover:scale-110 transition">👥</div>
+                <h3 class="font-medium mb-2" data-i18n="feat.f8.t">Team Collaboration</h3>
+                <p class="text-sm text-2" data-i18n="feat.f8.d">Invite members, manage permissions</p>
+            </div>
+            <div class="card p-6 group">
+                <div class="text-3xl mb-4 group-hover:scale-110 transition">🔗</div>
+                <h3 class="font-medium mb-2" data-i18n="feat.f9.t">Webhooks & API</h3>
+                <p class="text-sm text-2" data-i18n="feat.f9.d">Integrate with your existing tools</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="py-28">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-14">
+            <p class="text-sm text-violet-400 font-medium mb-3">Pricing</p>
+            <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="price.title">Simple Pricing</h2>
+            <p class="text-lg text-2" data-i18n="price.sub">Start free, upgrade when you need AI power</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div class="card p-8">
+                <h3 class="text-xl font-semibold mb-2" data-i18n="price.free.t">Free</h3>
+                <div class="text-4xl font-bold mb-6">$0<span class="text-lg text-2 font-normal">/mo</span></div>
+                <ul class="space-y-3 mb-8 text-sm text-2">
+                    <li>✓ 3 Websites</li>
+                    <li>✓ 5-minute checks</li>
+                    <li>✓ Email alerts</li>
+                    <li>✓ 7-day history</li>
+                </ul>
+                <a href="#" class="btn btn-s w-full text-center block" data-i18n="price.free.btn">Get Started</a>
+            </div>
+            
+            <div class="card p-8 border-violet-500/30 relative">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-cyan-500 px-4 py-1 rounded-full text-xs font-medium">Popular</div>
+                <h3 class="text-xl font-semibold mb-2" data-i18n="price.pro.t">Pro</h3>
+                <div class="text-4xl font-bold mb-6">$19<span class="text-lg text-2 font-normal">/mo</span></div>
+                <ul class="space-y-3 mb-8 text-sm">
+                    <li>✓ 20 Websites</li>
+                    <li>✓ 1-minute checks</li>
+                    <li>✓ Slack, Discord, Webhooks</li>
+                    <li>✓ 30-day history</li>
+                    <li>✓ <strong>88 AI Pro</strong></li>
+                    <li>✓ SSL Monitoring</li>
+                </ul>
+                <a href="#" class="btn btn-p w-full text-center block" data-i18n="price.pro.btn">Start Free Trial</a>
+            </div>
+            
+            <div class="card p-8">
+                <h3 class="text-xl font-semibold mb-2" data-i18n="price.biz.t">Business</h3>
+                <div class="text-4xl font-bold mb-6">$49<span class="text-lg text-2 font-normal">/mo</span></div>
+                <ul class="space-y-3 mb-8 text-sm text-2">
+                    <li>✓ Unlimited Websites</li>
+                    <li>✓ 30-second checks</li>
+                    <li>✓ Priority support</li>
+                    <li>✓ 1-year history</li>
+                    <li>✓ Team members</li>
+                    <li>✓ API access</li>
+                </ul>
+                <a href="mailto:support@orvoai.app" class="btn btn-s w-full text-center block" data-i18n="price.biz.btn">Contact Sales</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-28 relative overflow-hidden bg-2">
+    <div class="absolute inset-0 opacity-50">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-2xl mx-auto px-6 text-center relative z-10">
+        <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="cta.title">Start Monitoring Today</h2>
+        <p class="text-lg text-2 mb-10" data-i18n="cta.sub">Free forever plan available. No credit card required.</p>
+        <a href="#pricing" class="btn btn-p text-base" data-i18n="cta.btn">Get Started Free →</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-10 border-t border-c">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-2">
+        <div class="flex items-center gap-2.5">
+            <div class="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-cyan-500"></div>
+            <span class="font-medium text-[var(--text)]">ORVO AI</span>
+        </div>
+        <div class="flex items-center gap-6">
+            <a href="/terms.html" class="hover:text-white transition">Terms</a>
+            <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
+            <a href="mailto:support@orvoai.app" class="hover:text-white transition">Contact</a>
+        </div>
+        <div>© 2026 ORVO AI</div>
+    </div>
+</footer>
+
+<script>
+const T = {
+    en: {
+        'nav.start': 'Get Started',
+        'hero.badge': '🔮 Predict Downtime Before It Happens',
+        'hero.t1': 'Warns Before', 'hero.t2': 'It Falls.',
+        'hero.sub': 'AI-powered website monitoring. SSL certificate tracking, public status pages, instant alerts with 88 AI Pro predictions.',
+        'hero.cta1': 'Start Free Trial', 'hero.cta2': 'See 88 AI Pro',
+        'hero.f1': 'No credit card', 'hero.f2': '14-day free trial', 'hero.f3': 'Cancel anytime',
+        'stats.uptime': 'Uptime', 'stats.response': 'Avg Response', 'stats.sites': 'Sites Monitored',
+        'ai.badge': '🧠 AI Powered',
+        'ai.sub': 'Multi-factor prediction engine that forecasts your site\'s health score before problems occur.',
+        'ai.f1.t': 'EMA Analysis', 'ai.f1.d': 'Weighted trend detection on recent data',
+        'ai.f2.t': 'Linear Regression', 'ai.f2.d': 'Statistical future predictions',
+        'ai.f3.t': 'Hour Patterns', 'ai.f3.d': 'Learns daily performance cycles',
+        'ai.f4.t': 'Confidence Intervals', 'ai.f4.d': 'Best/worst case with ±% range',
+        'ai.pred': 'Predictions', 'ai.stable': 'Stable',
+        'ai.insight': 'Systems stable, no changes expected',
+        'ssl.title': 'Never Miss an Expiry', 'ssl.sub': 'Automatically track SSL certificates for all your monitored sites.',
+        'ssl.f1.t': 'Expiry Tracking', 'ssl.f1.d': 'See days remaining for each certificate',
+        'ssl.f2.t': 'Early Warnings', 'ssl.f2.d': 'Alerts at 30, 14, and 7 days before expiry',
+        'ssl.f3.t': 'Issuer Info', 'ssl.f3.d': 'View certificate authority and validity dates',
+        'feat.title': 'Core Features', 'feat.sub': 'Everything you need for professional monitoring',
+        'feat.f1.t': 'SSL Monitoring', 'feat.f1.d': 'Track certificate expiry with alerts',
+        'feat.f3.t': 'Public Status', 'feat.f3.d': 'Shareable status page with subscribers',
+        'feat.f4.d': '5m to 1h predictive forecasts',
+        'feat.f7.t': 'Instant Alerts', 'feat.f7.d': 'Slack, Email, Discord, Webhooks',
+        'feat.f8.t': 'Team Collaboration', 'feat.f8.d': 'Invite members, manage permissions',
+        'feat.f9.t': 'Webhooks & API', 'feat.f9.d': 'Integrate with your existing tools',
+        'price.title': 'Simple Pricing', 'price.sub': 'Start free, upgrade when you need AI power',
+        'price.free.t': 'Free', 'price.free.btn': 'Get Started',
+        'price.pro.t': 'Pro', 'price.pro.btn': 'Start Free Trial',
+        'price.biz.t': 'Business', 'price.biz.btn': 'Contact Sales',
+        'cta.title': 'Start Monitoring Today', 'cta.sub': 'Free forever plan available. No credit card required.', 'cta.btn': 'Get Started Free →'
+    },
+    tr: {
+        'nav.start': 'Başla',
+        'hero.badge': '🔮 Düşmeden Önce Tahmin Et',
+        'hero.t1': 'Düşmeden Önce', 'hero.t2': 'Uyarır.',
+        'hero.sub': 'AI destekli web sitesi izleme. SSL sertifika takibi, public durum sayfaları, 88 AI Pro tahminli anında uyarılar.',
+        'hero.cta1': 'Ücretsiz Dene', 'hero.cta2': '88 AI Pro\'yu Gör',
+        'hero.f1': 'Kredi kartı yok', 'hero.f2': '14 gün ücretsiz', 'hero.f3': 'İstediğin zaman iptal',
+        'stats.uptime': 'Çalışma Süresi', 'stats.response': 'Ort. Yanıt', 'stats.sites': 'İzlenen Site',
+        'ai.badge': '🧠 AI Destekli',
+        'ai.sub': 'Sitenizin sağlık skorunu sorunlar oluşmadan önce tahmin eden çok faktörlü motor.',
+        'ai.f1.t': 'EMA Analizi', 'ai.f1.d': 'Son verilere ağırlıklı trend tespiti',
+        'ai.f2.t': 'Doğrusal Regresyon', 'ai.f2.d': 'İstatistiksel gelecek tahminleri',
+        'ai.f3.t': 'Saat Kalıpları', 'ai.f3.d': 'Günlük performans döngülerini öğrenir',
+        'ai.f4.t': 'Güven Aralıkları', 'ai.f4.d': '±% aralığıyla en iyi/kötü durum',
+        'ai.pred': 'Tahminler', 'ai.stable': 'Stabil',
+        'ai.insight': 'Sistemler stabil, değişiklik beklenmiyor',
+        'ssl.title': 'Hiçbir Süreyi Kaçırma', 'ssl.sub': 'İzlediğiniz tüm siteler için SSL sertifikalarını otomatik takip edin.',
+        'ssl.f1.t': 'Süre Takibi', 'ssl.f1.d': 'Her sertifika için kalan günleri görün',
+        'ssl.f2.t': 'Erken Uyarılar', 'ssl.f2.d': 'Bitiş öncesi 30, 14 ve 7 günde uyarılar',
+        'ssl.f3.t': 'Sağlayıcı Bilgisi', 'ssl.f3.d': 'Sertifika otoritesi ve geçerlilik tarihlerini görün',
+        'feat.title': 'Temel Özellikler', 'feat.sub': 'Profesyonel izleme için gereken her şey',
+        'feat.f1.t': 'SSL İzleme', 'feat.f1.d': 'Uyarılı sertifika süre takibi',
+        'feat.f3.t': 'Public Status', 'feat.f3.d': 'Aboneli paylaşılabilir durum sayfası',
+        'feat.f4.d': '5dk-1sa tahmin motorları',
+        'feat.f7.t': 'Anında Uyarılar', 'feat.f7.d': 'Slack, Email, Discord, Webhooks',
+        'feat.f8.t': 'Takım İşbirliği', 'feat.f8.d': 'Üye davet et, izinleri yönet',
+        'feat.f9.t': 'Webhooks & API', 'feat.f9.d': 'Mevcut araçlarınla entegre et',
+        'price.title': 'Basit Fiyatlandırma', 'price.sub': 'Ücretsiz başla, AI gücüne ihtiyacın olunca yükselt',
+        'price.free.t': 'Ücretsiz', 'price.free.btn': 'Başla',
+        'price.pro.t': 'Pro', 'price.pro.btn': 'Ücretsiz Dene',
+        'price.biz.t': 'Business', 'price.biz.btn': 'Satışla İletişim',
+        'cta.title': 'Bugün İzlemeye Başla', 'cta.sub': 'Sonsuza kadar ücretsiz plan mevcut. Kredi kartı gerekmez.', 'cta.btn': 'Ücretsiz Başla →'
+    }
+};
+
+let lang = localStorage.getItem('orvo-lang') || 'en';
+
+function setLang(l) {
+    lang = l; localStorage.setItem('orvo-lang', l);
+    document.querySelectorAll('[data-i18n]').forEach(e => { if (T[l][e.dataset.i18n]) e.textContent = T[l][e.dataset.i18n]; });
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+}
+
+function toggleTheme() {
+    const d = document.documentElement, dark = d.dataset.theme === 'dark';
+    d.dataset.theme = dark ? 'light' : 'dark';
+    localStorage.setItem('orvo-theme', dark ? 'light' : 'dark');
+    document.getElementById('sunIcon').classList.toggle('hidden', !dark);
+    document.getElementById('moonIcon').classList.toggle('hidden', dark);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setLang(lang);
+    const t = localStorage.getItem('orvo-theme');
+    if (t) { document.documentElement.dataset.theme = t; document.getElementById('sunIcon').classList.toggle('hidden', t === 'light'); document.getElementById('moonIcon').classList.toggle('hidden', t === 'dark'); }
+});
+</script>
+</body>
+</html>
