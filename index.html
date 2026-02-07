@@ -6,57 +6,99 @@
     <title>ORVO - AI Website Monitoring</title>
     <meta name="description" content="Monitor websites with AI predictions. SSL monitoring, JWT auth, public status pages, instant alerts.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         *{font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
         [data-theme="dark"]{--bg:#050505;--bg2:#0a0a0a;--bg3:#111;--text:#f5f5f5;--text2:#888;--text3:#555;--border:#1a1a1a}
         [data-theme="light"]{--bg:#fff;--bg2:#fafafa;--bg3:#f5f5f5;--text:#111;--text2:#666;--text3:#999;--border:#eee}
-        body{background:var(--bg);color:var(--text)}
+        body{background:var(--bg);color:var(--text);overflow-x:hidden}
         .text-2{color:var(--text2)}.text-3{color:var(--text3)}
         .bg-2{background:var(--bg2)}.bg-3{background:var(--bg3)}
         .border-c{border-color:var(--border)}
-        .btn{padding:12px 28px;border-radius:10px;font-weight:500;font-size:14px;transition:all .2s}
-        .btn-p{background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;box-shadow:0 4px 20px rgba(139,92,246,0.3)}
-        .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,0.4)}
+        
+        /* Buttons */
+        .btn{padding:14px 32px;border-radius:12px;font-weight:600;font-size:15px;transition:all .3s}
+        .btn-p{background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;box-shadow:0 4px 25px rgba(139,92,246,0.4)}
+        .btn-p:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 40px rgba(139,92,246,0.5)}
         .btn-s{background:var(--bg2);color:var(--text);border:1px solid var(--border)}
-        .btn-s:hover{border-color:#8b5cf6;background:rgba(139,92,246,0.05)}
-        .card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;transition:all .25s}
-        .card:hover{border-color:rgba(139,92,246,0.3);box-shadow:0 10px 40px rgba(139,92,246,0.1)}
-        .bot-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;transition:all .25s;position:relative;overflow:hidden}
-        .bot-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s}
-        .bot-card:hover::before{opacity:1}
-        .bot-card:hover{border-color:transparent;transform:translateY(-2px)}
-        .bot-card.orange::before{background:linear-gradient(135deg,rgba(249,115,22,0.1),transparent)}
-        .bot-card.orange:hover{border-color:rgba(249,115,22,0.3)}
-        .bot-card.blue::before{background:linear-gradient(135deg,rgba(59,130,246,0.1),transparent)}
-        .bot-card.blue:hover{border-color:rgba(59,130,246,0.3)}
-        .bot-card.yellow::before{background:linear-gradient(135deg,rgba(234,179,8,0.1),transparent)}
-        .bot-card.yellow:hover{border-color:rgba(234,179,8,0.3)}
-        .bot-card.purple::before{background:linear-gradient(135deg,rgba(139,92,246,0.1),transparent)}
-        .bot-card.purple:hover{border-color:rgba(139,92,246,0.3)}
-        .bot-card.green::before{background:linear-gradient(135deg,rgba(34,197,94,0.1),transparent)}
-        .bot-card.green:hover{border-color:rgba(34,197,94,0.3)}
-        .bot-card.red::before{background:linear-gradient(135deg,rgba(239,68,68,0.1),transparent)}
-        .bot-card.red:hover{border-color:rgba(239,68,68,0.3)}
-        .bot-card.cyan::before{background:linear-gradient(135deg,rgba(6,182,212,0.1),transparent)}
-        .bot-card.cyan:hover{border-color:rgba(6,182,212,0.3)}
-        .bot-card.pink::before{background:linear-gradient(135deg,rgba(236,72,153,0.1),transparent)}
-        .bot-card.pink:hover{border-color:rgba(236,72,153,0.3)}
+        .btn-s:hover{border-color:#8b5cf6;background:rgba(139,92,246,0.08);transform:translateY(-2px)}
+        
+        /* Cards with 3D Tilt */
+        .card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;transition:all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);transform-style:preserve-3d}
+        .card:hover{border-color:rgba(139,92,246,0.4);box-shadow:0 25px 50px rgba(139,92,246,0.15);transform:translateY(-8px)}
+        
+        /* 3D Tilt Effect */
+        .tilt-card{transform-style:preserve-3d;transition:transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)}
+        .tilt-card:hover{transform:perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.02)}
+        .tilt-card .tilt-content{transform:translateZ(30px)}
+        
+        /* Floating Animation */
+        @keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(2deg)}}
+        @keyframes float-delayed{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-15px) rotate(-2deg)}}
+        @keyframes float-slow{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        .float{animation:float 6s ease-in-out infinite}
+        .float-delayed{animation:float-delayed 7s ease-in-out infinite}
+        .float-slow{animation:float-slow 8s ease-in-out infinite}
+        
+        /* Typewriter Effect */
+        .typewriter{overflow:hidden;border-right:3px solid #8b5cf6;white-space:nowrap;animation:typing 3.5s steps(40,end),blink-caret .75s step-end infinite}
+        @keyframes typing{from{width:0}to{width:100%}}
+        @keyframes blink-caret{from,to{border-color:transparent}50%{border-color:#8b5cf6}}
+        
+        /* Parallax */
+        .parallax-slow{transition:transform 0.1s linear}
+        .parallax-fast{transition:transform 0.05s linear}
+        
+        /* Gradient Text */
+        .grad-text{background:linear-gradient(135deg,#8b5cf6,#06b6d4,#8b5cf6);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradient-shift 3s ease infinite}
+        @keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        
+        /* Glow Effects */
+        .glow-violet{box-shadow:0 0 60px rgba(139,92,246,0.3),0 0 100px rgba(139,92,246,0.1)}
+        .glow-cyan{box-shadow:0 0 60px rgba(6,182,212,0.3),0 0 100px rgba(6,182,212,0.1)}
+        
+        /* Skeleton Loading */
+        .skeleton{background:linear-gradient(90deg,var(--bg2) 25%,var(--bg3) 50%,var(--bg2) 75%);background-size:200% 100%;animation:skeleton-loading 1.5s infinite}
+        @keyframes skeleton-loading{0%{background-position:200% 0}100%{background-position:-200% 0}}
+        
+        /* Pulse */
+        @keyframes pulse-glow{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.7;transform:scale(1.05)}}
+        .pulse-glow{animation:pulse-glow 2s ease-in-out infinite}
+        
+        /* Hero Background */
+        .hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+        .hero-bg::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 30%,rgba(139,92,246,0.12) 0%,transparent 50%);animation:bg-rotate 20s linear infinite}
+        .hero-bg::after{content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;background:radial-gradient(circle at 70% 60%,rgba(6,182,212,0.08) 0%,transparent 50%);animation:bg-rotate 25s linear infinite reverse}
+        @keyframes bg-rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        
+        /* Grid Pattern */
+        .grid-pattern{background-image:linear-gradient(rgba(139,92,246,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,0.03) 1px,transparent 1px);background-size:50px 50px}
+        
+        /* Scroll Reveal */
+        .reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)}
+        .reveal.active{opacity:1;transform:translateY(0)}
+        
+        /* Floating Elements */
+        .floating-element{position:absolute;border-radius:16px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1)}
+        
+        /* Stats Counter */
+        .counter{font-variant-numeric:tabular-nums}
+        
+        /* Language & Theme */
         .lang-btn{transition:all .2s}.lang-btn.active{background:linear-gradient(135deg,#8b5cf6,#06b6d4);color:#fff}
+        
+        /* FAQ */
         .faq-answer{max-height:0;overflow:hidden;transition:max-height .3s}
         .faq-item.open .faq-answer{max-height:200px}
         .faq-item.open .faq-icon{transform:rotate(45deg)}
+        
+        /* Smooth Scroll */
         html{scroll-behavior:smooth}
         h1,h2{letter-spacing:-0.03em}
         ::selection{background:rgba(139,92,246,0.3)}
-        .hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-        .hero-bg::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 30%,rgba(139,92,246,0.08) 0%,transparent 50%)}
-        .hero-bg::after{content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;background:radial-gradient(circle at 70% 60%,rgba(6,182,212,0.06) 0%,transparent 50%)}
-        .ai-glow{box-shadow:0 0 60px rgba(139,92,246,0.15),0 20px 40px rgba(0,0,0,0.2)}
-        .pred-now{background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(6,182,212,0.1));border:1px solid rgba(139,92,246,0.2)}
-        .new-badge{background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600;margin-left:6px}
-        .ssl-glow{box-shadow:0 0 60px rgba(6,182,212,0.15),0 20px 40px rgba(0,0,0,0.2)}
+        
+        /* Mobile Menu */
         .mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:var(--bg);z-index:40;padding:24px;flex-direction:column;gap:8px}
         .mobile-menu.open{display:flex}
         .mobile-menu a{padding:16px;border-radius:12px;font-size:16px;transition:all .2s;color:var(--text2)}
@@ -66,39 +108,52 @@
         .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
         .hamburger.open span:nth-child(2){opacity:0}
         .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-        @media(max-width:768px){.hamburger{display:flex}.desktop-nav{display:none !important}.desktop-btns{display:none !important}}
+        @media(max-width:768px){.hamburger{display:flex}.desktop-nav{display:none !important}.desktop-btns{display:none !important}.floating-element{display:none}}
+        
+        /* Feature Icon Hover */
+        .feature-icon{transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)}
+        .card:hover .feature-icon{transform:scale(1.1) rotate(5deg)}
+        
+        /* Ripple Effect */
+        .ripple{position:relative;overflow:hidden}
+        .ripple::after{content:'';position:absolute;inset:0;background:radial-gradient(circle,rgba(255,255,255,0.2) 0%,transparent 70%);transform:scale(0);opacity:0;transition:all 0.5s}
+        .ripple:hover::after{transform:scale(2);opacity:1}
     </style>
 </head>
-<body>
-<nav class="fixed top-0 left-0 right-0 z-50 border-b border-c backdrop-blur-xl" style="background:rgba(5,5,5,0.8)">
-    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-        <div class="flex items-center gap-6">
-            <a href="#" class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-violet-500/20">O</div>
-                <span class="font-semibold text-lg">ORVO</span>
+<body class="grid-pattern">
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-c backdrop-blur-xl" style="background:rgba(5,5,5,0.85)">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-8">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white text-lg font-bold shadow-lg shadow-violet-500/30 group-hover:shadow-violet-500/50 transition-all group-hover:scale-105">O</div>
+                <span class="font-bold text-xl">ORVO</span>
             </a>
-            <div class="hidden md:flex items-center gap-6 text-sm text-2 desktop-nav">
-                <a href="#features" class="hover:text-white transition" data-i18n="nav.features">Features</a>
-                <a href="#detection" class="hover:text-white transition" data-i18n="nav.detection">Detection</a>
-                <a href="#ai" class="hover:text-white transition" data-i18n="nav.ai">AI</a>
-                <a href="#ssl" class="hover:text-white transition" data-i18n="nav.ssl">SSL</a>
-                <a href="pricing.html" class="hover:text-white transition" data-i18n="nav.pricing">Pricing</a>
+            <div class="hidden md:flex items-center gap-8 text-sm text-2 desktop-nav">
+                <a href="#features" class="hover:text-white transition relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-violet-500 after:transition-all hover:after:w-full" data-i18n="nav.features">Features</a>
+                <a href="#detection" class="hover:text-white transition relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-violet-500 after:transition-all hover:after:w-full" data-i18n="nav.detection">Detection</a>
+                <a href="#ai" class="hover:text-white transition relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-violet-500 after:transition-all hover:after:w-full" data-i18n="nav.ai">AI</a>
+                <a href="#ssl" class="hover:text-white transition relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-violet-500 after:transition-all hover:after:w-full" data-i18n="nav.ssl">SSL</a>
+                <a href="pricing.html" class="hover:text-white transition relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-violet-500 after:transition-all hover:after:w-full" data-i18n="nav.pricing">Pricing</a>
             </div>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-4">
             <div class="hidden sm:flex gap-1 text-xs bg-2 p-1 rounded-lg">
-                <button onclick="setLang('en')" class="lang-btn px-2.5 py-1 rounded-md active" data-lang="en">EN</button>
-                <button onclick="setLang('tr')" class="lang-btn px-2.5 py-1 rounded-md" data-lang="tr">TR</button>
+                <button onclick="setLang('en')" class="lang-btn px-3 py-1.5 rounded-md active" data-lang="en">EN</button>
+                <button onclick="setLang('tr')" class="lang-btn px-3 py-1.5 rounded-md" data-lang="tr">TR</button>
             </div>
-            <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-2 transition">
-                <svg id="sunIcon" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                <svg id="moonIcon" class="w-[18px] h-[18px] hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <button onclick="toggleTheme()" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-2 transition">
+                <svg id="sunIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                <svg id="moonIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
             </button>
-            <a href="pricing.html" class="btn btn-p text-sm desktop-btns" data-i18n="nav.pricing">Pricing</a>
+            <a href="pricing.html" class="btn btn-p text-sm desktop-btns ripple" data-i18n="nav.pricing">Pricing</a>
             <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
         </div>
     </div>
 </nav>
+
+<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
     <a href="#features" onclick="closeMobileMenu()" data-i18n="nav.features">Features</a>
     <a href="#detection" onclick="closeMobileMenu()" data-i18n="nav.detection">Detection</a>
@@ -112,189 +167,369 @@
     </div>
     <div class="flex flex-col gap-3 mt-4 px-4"><a href="pricing.html" class="btn btn-p text-center" data-i18n="nav.pricing">Pricing</a></div>
 </div>
-<section class="min-h-screen flex items-center justify-center pt-14 relative">
+
+<!-- Hero Section -->
+<section class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
     <div class="hero-bg"></div>
-    <div class="max-w-3xl mx-auto px-6 text-center py-32 relative z-10">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-2 border border-c text-sm text-2 mb-8">
-            <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-            <span data-i18n="hero.badge">✨ Predict Before Downtime</span>
+    
+    <!-- Floating Elements -->
+    <div class="floating-element float bg-gradient-to-br from-violet-500/10 to-transparent p-4 top-32 left-[10%]" style="width:80px;height:80px">
+        <svg class="w-full h-full text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <div class="floating-element float-delayed bg-gradient-to-br from-cyan-500/10 to-transparent p-4 top-48 right-[12%]" style="width:70px;height:70px">
+        <svg class="w-full h-full text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+    </div>
+    <div class="floating-element float-slow bg-gradient-to-br from-green-500/10 to-transparent p-3 bottom-40 left-[15%]" style="width:60px;height:60px">
+        <svg class="w-full h-full text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+    </div>
+    <div class="floating-element float bg-gradient-to-br from-orange-500/10 to-transparent p-3 bottom-32 right-[18%]" style="width:65px;height:65px">
+        <svg class="w-full h-full text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+    </div>
+    
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-500/10 border border-violet-500/20 mb-8 reveal">
+            <span class="w-2 h-2 rounded-full bg-green-400 pulse-glow"></span>
+            <span class="text-sm text-violet-300" data-i18n="hero.badge">✨ Predict Before Downtime</span>
         </div>
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 tracking-tight leading-[1.1]">
+        
+        <!-- Main Heading -->
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 reveal">
             <span data-i18n="hero.t1">Warns Before</span><br>
-            <span class="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent" data-i18n="hero.t2">It Falls.</span>
+            <span class="grad-text" data-i18n="hero.t2">It Falls.</span>
         </h1>
-        <p class="text-lg md:text-xl text-2 mb-10 max-w-xl mx-auto leading-relaxed" data-i18n="hero.sub">AI-powered website monitoring. SSL certificate tracking, public status pages, secure authentication.</p>
-        <div class="flex flex-wrap gap-4 justify-center mb-16">
-            <a href="pricing.html" class="btn btn-p text-base" data-i18n="hero.cta1">View Pricing</a>
+        
+        <!-- Typewriter Subtitle -->
+        <div class="h-16 flex items-center justify-center mb-8 reveal">
+            <p class="text-lg md:text-xl text-2 max-w-2xl" id="typewriter"></p>
+        </div>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 justify-center mb-12 reveal">
+            <a href="pricing.html" class="btn btn-p text-base ripple" data-i18n="hero.cta1">View Pricing</a>
             <a href="#ai" class="btn btn-s text-base" data-i18n="hero.cta2">See 88 AI</a>
         </div>
-        <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-3">
-            <span>✓ <span data-i18n="hero.f1">No credit card</span></span>
-            <span>✓ <span data-i18n="hero.f2">2 min setup</span></span>
-            <span>✓ <span data-i18n="hero.f3">SSL monitoring</span></span>
-            <span>✓ <span data-i18n="hero.f4">Public status page</span></span>
+        
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-2 reveal">
+            <div class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="hero.f1">No credit card</span></div>
+            <div class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="hero.f2">2 min setup</span></div>
+            <div class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="hero.f3">SSL monitoring</span></div>
+            <div class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="hero.f4">Status page</span></div>
+        </div>
+        
+        <!-- Dashboard Mockup -->
+        <div class="mt-16 reveal">
+            <div class="tilt-card relative mx-auto max-w-4xl rounded-2xl overflow-hidden glow-violet">
+                <div class="bg-gradient-to-b from-violet-500/5 to-transparent p-1">
+                    <div class="bg-[#0a0a0a] rounded-xl p-4">
+                        <!-- Browser Header -->
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="flex gap-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="flex-1 bg-[#1a1a1a] rounded-lg px-4 py-1.5 text-xs text-gray-500 text-center">orvoai.app/dashboard</div>
+                        </div>
+                        <!-- Dashboard Content -->
+                        <div class="grid grid-cols-4 gap-3 mb-4">
+                            <div class="bg-[#111] rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-green-400 counter" data-target="99.9">0</div>
+                                <div class="text-xs text-gray-500 mt-1">Uptime %</div>
+                            </div>
+                            <div class="bg-[#111] rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-violet-400 counter" data-target="127">0</div>
+                                <div class="text-xs text-gray-500 mt-1">Sites</div>
+                            </div>
+                            <div class="bg-[#111] rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-cyan-400 counter" data-target="45">0</div>
+                                <div class="text-xs text-gray-500 mt-1">ms Avg</div>
+                            </div>
+                            <div class="bg-[#111] rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-orange-400 counter" data-target="12">0</div>
+                                <div class="text-xs text-gray-500 mt-1">Alerts</div>
+                            </div>
+                        </div>
+                        <!-- Chart Skeleton -->
+                        <div class="bg-[#111] rounded-xl p-4 h-32 flex items-end gap-1">
+                            <div class="flex-1 bg-gradient-to-t from-violet-500/50 to-violet-500/10 rounded-t" style="height:60%"></div>
+                            <div class="flex-1 bg-gradient-to-t from-violet-500/50 to-violet-500/10 rounded-t" style="height:80%"></div>
+                            <div class="flex-1 bg-gradient-to-t from-violet-500/50 to-violet-500/10 rounded-t" style="height:45%"></div>
+                            <div class="flex-1 bg-gradient-to-t from-violet-500/50 to-violet-500/10 rounded-t" style="height:90%"></div>
+                            <div class="flex-1 bg-gradient-to-t from-violet-500/50 to-violet-500/10 rounded-t" style="height:70%"></div>
+                            <div class="flex-1 bg-gradient-to-t from-violet-500/50 to-violet-500/10 rounded-t" style="height:85%"></div>
+                            <div class="flex-1 bg-gradient-to-t from-violet-500/50 to-violet-500/10 rounded-t" style="height:55%"></div>
+                            <div class="flex-1 bg-gradient-to-t from-green-500/50 to-green-500/10 rounded-t" style="height:95%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
-<section class="border-y border-c bg-2">
-    <div class="max-w-5xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-4 gap-8">
-        <div class="text-center"><div class="text-4xl font-semibold bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">12+</div><div class="text-sm text-2 mt-1" data-i18n="stats.pages">Pages</div></div>
-        <div class="text-center"><div class="text-4xl font-semibold bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">30+</div><div class="text-sm text-2 mt-1" data-i18n="stats.api">API Endpoints</div></div>
-        <div class="text-center"><div class="text-4xl font-semibold bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">10</div><div class="text-sm text-2 mt-1" data-i18n="stats.bot">Bot Systems</div></div>
-        <div class="text-center"><div class="text-4xl font-semibold bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">150+</div><div class="text-sm text-2 mt-1" data-i18n="stats.i18n">Translations</div></div>
+
+<!-- Stats Section with Animated Counters -->
+<section class="py-20 relative">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+            <div class="card p-6 text-center tilt-card">
+                <div class="text-4xl font-bold grad-text counter" data-target="5000">0</div>
+                <div class="text-sm text-2 mt-2" data-i18n="stats.sites">Sites Monitored</div>
+            </div>
+            <div class="card p-6 text-center tilt-card">
+                <div class="text-4xl font-bold grad-text counter" data-target="99.9">0</div>
+                <div class="text-sm text-2 mt-2" data-i18n="stats.uptime">% Uptime</div>
+            </div>
+            <div class="card p-6 text-center tilt-card">
+                <div class="text-4xl font-bold grad-text counter" data-target="50">0</div>
+                <div class="text-sm text-2 mt-2" data-i18n="stats.response">ms Response</div>
+            </div>
+            <div class="card p-6 text-center tilt-card">
+                <div class="text-4xl font-bold grad-text counter" data-target="24">0</div>
+                <div class="text-sm text-2 mt-2" data-i18n="stats.support">/7 Support</div>
+            </div>
+        </div>
     </div>
 </section>
-<section class="py-28 bg-gradient-to-b from-violet-500/5 to-transparent">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="text-center mb-14">
-            <p class="text-sm text-violet-400 font-medium mb-3">Why ORVO?</p>
-            <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="new.title">Key Features</h2>
-            <p class="text-lg text-2" data-i18n="new.sub">Everything you need for smart monitoring</p>
+
+<!-- Features Section -->
+<section id="features" class="py-24 relative">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="feat.title">Core Features</h2>
+            <p class="text-lg text-2 max-w-2xl mx-auto" data-i18n="feat.sub">Everything you need for professional monitoring</p>
         </div>
+        
         <div class="grid md:grid-cols-3 gap-6">
-            <div class="card p-8 text-center group hover:border-cyan-500/30"><div class="text-5xl mb-4">🔮</div><h3 class="font-semibold text-lg mb-2" data-i18n="new.f1.t">88 AI</h3><p class="text-sm text-2" data-i18n="new.f1.d">Predict downtime 5min to 1hr ahead with AI</p></div>
-            <div class="card p-8 text-center group hover:border-violet-500/30"><div class="text-5xl mb-4">🔒</div><h3 class="font-semibold text-lg mb-2" data-i18n="new.f2.t">SSL Monitoring</h3><p class="text-sm text-2" data-i18n="new.f2.d">Track certificate expiry, get alerts before they expire</p></div>
-            <div class="card p-8 text-center group hover:border-emerald-500/30"><div class="text-5xl mb-4">⚡</div><h3 class="font-semibold text-lg mb-2" data-i18n="new.f3.t">Instant Alerts</h3><p class="text-sm text-2" data-i18n="new.f3.d">Email, Slack, Webhooks - get notified instantly</p></div>
-        </div>
-    </div>
-</section>
-<section id="features" class="py-28">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="max-w-2xl mb-14">
-            <p class="text-sm text-violet-400 font-medium mb-3">Features</p>
-            <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="feat.title">Core Features</h2>
-            <p class="text-lg text-2" data-i18n="feat.sub">Everything you need for professional monitoring</p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="card p-6 group"><div class="text-3xl mb-4 group-hover:scale-110 transition">🔒</div><h3 class="font-medium mb-2" data-i18n="feat.f1.t">SSL Monitoring<span class="new-badge">NEW</span></h3><p class="text-sm text-2" data-i18n="feat.f1.d">Track certificate expiry with alerts</p></div>
-            <div class="card p-6 group"><div class="text-3xl mb-4 group-hover:scale-110 transition">🔐</div><h3 class="font-medium mb-2" data-i18n="feat.f2.t">JWT Auth<span class="new-badge">NEW</span></h3><p class="text-sm text-2" data-i18n="feat.f2.d">Secure login with role-based access</p></div>
-            <div class="card p-6 group"><div class="text-3xl mb-4 group-hover:scale-110 transition">🌐</div><h3 class="font-medium mb-2" data-i18n="feat.f3.t">Public Status<span class="new-badge">NEW</span></h3><p class="text-sm text-2" data-i18n="feat.f3.d">Shareable status page with subscribers</p></div>
-            <div class="card p-6 group"><div class="text-3xl mb-4 group-hover:scale-110 transition">🔮</div><h3 class="font-medium mb-2" data-i18n="feat.f4.t">88 AI</h3><p class="text-sm text-2" data-i18n="feat.f4.d">5m to 1h predictive forecasts</p></div>
-            <div class="card p-6 group"><div class="text-3xl mb-4 group-hover:scale-110 transition">🛡️</div><h3 class="font-medium mb-2" data-i18n="feat.f5.t">Bot Detection</h3><p class="text-sm text-2" data-i18n="feat.f5.d">10 protection systems auto-detected</p></div>
-            <div class="card p-6 group"><div class="text-3xl mb-4 group-hover:scale-110 transition">📱</div><h3 class="font-medium mb-2" data-i18n="feat.f6.t">PWA Support</h3><p class="text-sm text-2" data-i18n="feat.f6.d">Install as app, works offline</p></div>
-            <div class="card p-6 group"><div class="text-3xl mb-4 group-hover:scale-110 transition">⚡</div><h3 class="font-medium mb-2" data-i18n="feat.f7.t">Instant Alerts</h3><p class="text-sm text-2" data-i18n="feat.f7.d">Slack, Email, Webhooks</p></div>
-            <div class="card p-6 group"><div class="text-3xl mb-4 group-hover:scale-110 transition">🔔</div><h3 class="font-medium mb-2" data-i18n="feat.f8.t">Smart Alerts</h3><p class="text-sm text-2" data-i18n="feat.f8.d">Cooldown, quiet hours, Slack</p></div>
-            <div class="card p-6 group"><div class="text-3xl mb-4 group-hover:scale-110 transition">🌍</div><h3 class="font-medium mb-2" data-i18n="feat.f9.t">Multi-Language</h3><p class="text-sm text-2" data-i18n="feat.f9.d">TR/EN with 150+ translations</p></div>
-        </div>
-    </div>
-</section>
-<section id="detection" class="py-28">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="max-w-2xl mb-14">
-            <p class="text-sm text-violet-400 font-medium mb-3">Detection</p>
-            <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="bot.title">Bot Protection Detection</h2>
-            <p class="text-lg text-2" data-i18n="bot.sub">Automatically detect what's protecting your target sites</p>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-            <div class="bot-card orange p-5 text-center relative z-10"><div class="text-3xl mb-2">☁️</div><div class="text-sm font-medium">Cloudflare</div></div>
-            <div class="bot-card blue p-5 text-center relative z-10"><div class="text-3xl mb-2">🔷</div><div class="text-sm font-medium">Akamai</div></div>
-            <div class="bot-card yellow p-5 text-center relative z-10"><div class="text-3xl mb-2">⚡</div><div class="text-sm font-medium">AWS WAF</div></div>
-            <div class="bot-card purple p-5 text-center relative z-10"><div class="text-3xl mb-2">🛡️</div><div class="text-sm font-medium">Imperva</div></div>
-            <div class="bot-card green p-5 text-center relative z-10"><div class="text-3xl mb-2">🔒</div><div class="text-sm font-medium">Sucuri</div></div>
-            <div class="bot-card red p-5 text-center relative z-10"><div class="text-3xl mb-2">🤖</div><div class="text-sm font-medium">PerimeterX</div></div>
-            <div class="bot-card cyan p-5 text-center relative z-10"><div class="text-3xl mb-2">📊</div><div class="text-sm font-medium">DataDome</div></div>
-            <div class="bot-card green p-5 text-center relative z-10"><div class="text-3xl mb-2">✅</div><div class="text-sm font-medium">hCaptcha</div></div>
-            <div class="bot-card pink p-5 text-center relative z-10"><div class="text-3xl mb-2">🔐</div><div class="text-sm font-medium">reCAPTCHA</div></div>
-            <div class="bot-card blue p-5 text-center relative z-10"><div class="text-3xl mb-2">🌐</div><div class="text-sm font-medium">Generic</div></div>
-        </div>
-    </div>
-</section>
-<section id="ai" class="py-28 bg-2">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <p class="text-sm text-violet-400 font-medium mb-3">AI Powered</p>
-                <h2 class="text-3xl md:text-4xl font-semibold mb-4">88 AI</h2>
-                <p class="text-lg text-2 mb-10" data-i18n="ai.sub">Multi-factor prediction engine that forecasts your site's health score.</p>
-                <div class="space-y-6">
-                    <div class="flex gap-4 items-start"><div class="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center text-lg flex-shrink-0">📈</div><div><div class="font-medium mb-1" data-i18n="ai.f1.t">EMA Analysis</div><div class="text-sm text-2" data-i18n="ai.f1.d">Trend detection with recent data weight</div></div></div>
-                    <div class="flex gap-4 items-start"><div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-lg flex-shrink-0">📊</div><div><div class="font-medium mb-1" data-i18n="ai.f2.t">Linear Regression</div><div class="text-sm text-2" data-i18n="ai.f2.d">Statistical future predictions</div></div></div>
-                    <div class="flex gap-4 items-start"><div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-lg flex-shrink-0">🕐</div><div><div class="font-medium mb-1" data-i18n="ai.f3.t">Hour Patterns</div><div class="text-sm text-2" data-i18n="ai.f3.d">Learns daily performance cycles</div></div></div>
-                    <div class="flex gap-4 items-start"><div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-lg flex-shrink-0">🎯</div><div><div class="font-medium mb-1" data-i18n="ai.f4.t">Confidence Intervals</div><div class="text-sm text-2" data-i18n="ai.f4.d">Best/worst case with ±% range</div></div></div>
+            <!-- Feature 1 -->
+            <div class="card p-8 tilt-card reveal">
+                <div class="feature-icon w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-500/5 flex items-center justify-center mb-6">
+                    <svg class="w-7 h-7 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                 </div>
+                <h3 class="text-xl font-semibold mb-3" data-i18n="feat.f1.t">88 AI</h3>
+                <p class="text-2" data-i18n="feat.f1.d">Predict downtime 5min to 1hr ahead with AI</p>
             </div>
-            <div class="card p-6 ai-glow">
-                <div class="flex items-center justify-between mb-6"><span class="font-medium">🔮 Predictions</span><span class="text-sm text-emerald-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>Stable</span></div>
-                <div class="grid grid-cols-5 gap-2 text-center text-sm">
-                    <div class="pred-now rounded-xl p-4"><div class="text-xs text-2 mb-1">NOW</div><div class="text-2xl font-semibold text-emerald-400">96%</div></div>
-                    <div class="bg-3 rounded-xl p-4"><div class="text-xs text-3 mb-1">5m</div><div class="text-2xl font-semibold">94%</div><div class="text-xs text-3">±2%</div></div>
-                    <div class="bg-3 rounded-xl p-4"><div class="text-xs text-3 mb-1">15m</div><div class="text-2xl font-semibold">92%</div><div class="text-xs text-3">±4%</div></div>
-                    <div class="bg-3 rounded-xl p-4"><div class="text-xs text-3 mb-1">30m</div><div class="text-2xl font-semibold text-yellow-400">88%</div><div class="text-xs text-3">±6%</div></div>
-                    <div class="bg-3 rounded-xl p-4"><div class="text-xs text-3 mb-1">1h</div><div class="text-2xl font-semibold text-yellow-400">85%</div><div class="text-xs text-3">±8%</div></div>
+            
+            <!-- Feature 2 -->
+            <div class="card p-8 tilt-card reveal">
+                <div class="feature-icon w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 flex items-center justify-center mb-6">
+                    <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                 </div>
-                <div class="mt-5 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-sm text-emerald-400 flex items-center gap-2"><span>✓</span><span data-i18n="ai.insight">Systems stable, no changes expected</span></div>
+                <h3 class="text-xl font-semibold mb-3" data-i18n="feat.f2.t">SSL Monitoring</h3>
+                <p class="text-2" data-i18n="feat.f2.d">Track certificate expiry with alerts</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="card p-8 tilt-card reveal">
+                <div class="feature-icon w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/20 to-orange-500/5 flex items-center justify-center mb-6">
+                    <svg class="w-7 h-7 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3" data-i18n="feat.f3.t">Instant Alerts</h3>
+                <p class="text-2" data-i18n="feat.f3.d">Email, Slack, Webhooks - get notified instantly</p>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="card p-8 tilt-card reveal">
+                <div class="feature-icon w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-500/5 flex items-center justify-center mb-6">
+                    <svg class="w-7 h-7 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3" data-i18n="feat.f4.t">Status Pages</h3>
+                <p class="text-2" data-i18n="feat.f4.d">Public status page for your users</p>
+            </div>
+            
+            <!-- Feature 5 -->
+            <div class="card p-8 tilt-card reveal">
+                <div class="feature-icon w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500/20 to-pink-500/5 flex items-center justify-center mb-6">
+                    <svg class="w-7 h-7 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3" data-i18n="feat.f5.t">Bot Detection</h3>
+                <p class="text-2" data-i18n="feat.f5.d">10 protection systems auto-detected</p>
+            </div>
+            
+            <!-- Feature 6 -->
+            <div class="card p-8 tilt-card reveal">
+                <div class="feature-icon w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 flex items-center justify-center mb-6">
+                    <svg class="w-7 h-7 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3" data-i18n="feat.f6.t">PWA Support</h3>
+                <p class="text-2" data-i18n="feat.f6.d">Install as app, works offline</p>
             </div>
         </div>
     </div>
 </section>
-<section id="ssl" class="py-28 bg-2">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <p class="text-sm text-cyan-400 font-medium mb-3">SSL Monitoring</p>
-                <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="ssl.title">Never Miss an Expiry</h2>
-                <p class="text-lg text-2 mb-10" data-i18n="ssl.sub">Automatically track SSL certificates for all your monitored sites.</p>
-                <div class="space-y-6">
-                    <div class="flex gap-4 items-start"><div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-lg flex-shrink-0">📅</div><div><div class="font-medium mb-1" data-i18n="ssl.f1.t">Expiry Tracking</div><div class="text-sm text-2" data-i18n="ssl.f1.d">See days remaining for each certificate</div></div></div>
-                    <div class="flex gap-4 items-start"><div class="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center text-lg flex-shrink-0">⚠️</div><div><div class="font-medium mb-1" data-i18n="ssl.f2.t">Early Warnings</div><div class="text-sm text-2" data-i18n="ssl.f2.d">Alerts at 30, 14, and 7 days before expiry</div></div></div>
-                    <div class="flex gap-4 items-start"><div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-lg flex-shrink-0">✅</div><div><div class="font-medium mb-1" data-i18n="ssl.f3.t">Issuer Info</div><div class="text-sm text-2" data-i18n="ssl.f3.d">View certificate authority and validity dates</div></div></div>
+
+<!-- 88 AI Section -->
+<section id="ai" class="py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-violet-500/5 via-transparent to-transparent"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-16 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 mb-6">
+                <span class="text-sm text-violet-300">🔮 Powered by AI</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">88 AI</h2>
+            <p class="text-lg text-2 max-w-2xl mx-auto" data-i18n="ai.sub">Multi-factor prediction engine that forecasts your site's health score.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card p-6 tilt-card reveal">
+                <div class="text-3xl mb-4">📈</div>
+                <h3 class="font-semibold mb-2" data-i18n="ai.f1.t">EMA Analysis</h3>
+                <p class="text-sm text-2" data-i18n="ai.f1.d">Trend detection with recent data weight</p>
+            </div>
+            <div class="card p-6 tilt-card reveal">
+                <div class="text-3xl mb-4">📊</div>
+                <h3 class="font-semibold mb-2" data-i18n="ai.f2.t">Linear Regression</h3>
+                <p class="text-sm text-2" data-i18n="ai.f2.d">Statistical future predictions</p>
+            </div>
+            <div class="card p-6 tilt-card reveal">
+                <div class="text-3xl mb-4">⏰</div>
+                <h3 class="font-semibold mb-2" data-i18n="ai.f3.t">Hour Patterns</h3>
+                <p class="text-sm text-2" data-i18n="ai.f3.d">Learns daily performance cycles</p>
+            </div>
+            <div class="card p-6 tilt-card reveal">
+                <div class="text-3xl mb-4">🎯</div>
+                <h3 class="font-semibold mb-2" data-i18n="ai.f4.t">Confidence Intervals</h3>
+                <p class="text-sm text-2" data-i18n="ai.f4.d">Best/worst case with ±% range</p>
+            </div>
+        </div>
+        
+        <!-- AI Prediction Demo -->
+        <div class="mt-12 reveal">
+            <div class="card p-8 max-w-2xl mx-auto glow-violet">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-2xl">🔮</div>
+                    <div>
+                        <div class="font-semibold">88 AI Prediction</div>
+                        <div class="text-sm text-2">Real-time analysis</div>
+                    </div>
+                </div>
+                <div class="bg-[#0a0a0a] rounded-xl p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-sm text-2">Health Score</span>
+                        <span class="text-2xl font-bold text-green-400">94%</span>
+                    </div>
+                    <div class="h-3 bg-[#1a1a1a] rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-violet-500 to-green-500 rounded-full" style="width:94%"></div>
+                    </div>
+                    <div class="mt-4 text-sm text-green-400" data-i18n="ai.insight">✓ Systems stable, no changes expected</div>
                 </div>
             </div>
-            <div class="card p-6 ssl-glow">
-                <div class="flex items-center justify-between mb-6"><span class="font-medium">🔒 SSL Certificates</span><span class="text-sm text-emerald-400">All Valid</span></div>
-                <div class="grid grid-cols-4 gap-3 mb-6 text-center text-sm">
-                    <div class="p-3 rounded-xl bg-emerald-500/10"><div class="text-2xl font-bold text-emerald-400">2</div><div class="text-xs text-3">Valid</div></div>
-                    <div class="p-3 rounded-xl bg-yellow-500/10"><div class="text-2xl font-bold text-yellow-400">0</div><div class="text-xs text-3">&lt;30d</div></div>
-                    <div class="p-3 rounded-xl bg-red-500/10"><div class="text-2xl font-bold text-red-400">0</div><div class="text-xs text-3">&lt;7d</div></div>
-                    <div class="p-3 rounded-xl bg-gray-500/10"><div class="text-2xl font-bold text-gray-400">0</div><div class="text-xs text-3">Expired</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- SSL Section -->
+<section id="ssl" class="py-24 relative">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
+                    <span class="text-sm text-cyan-300">🔒 SSL Monitoring</span>
                 </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between p-4 rounded-xl bg-emerald-500/10"><div class="flex items-center gap-3"><span>✅</span><div><div class="font-medium text-sm">Google</div><div class="text-xs text-3">Google Trust Services</div></div></div><div class="text-right"><div class="font-bold text-emerald-400">60d</div><div class="text-xs text-3">Apr 6, 2026</div></div></div>
-                    <div class="flex items-center justify-between p-4 rounded-xl bg-emerald-500/10"><div class="flex items-center gap-3"><span>✅</span><div><div class="font-medium text-sm">GitHub</div><div class="text-xs text-3">Sectigo Limited</div></div></div><div class="text-right"><div class="font-bold text-emerald-400">60d</div><div class="text-xs text-3">Apr 6, 2026</div></div></div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="ssl.title">Never Miss an Expiry</h2>
+                <p class="text-lg text-2 mb-8" data-i18n="ssl.sub">Automatically track SSL certificates for all your monitored sites.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1" data-i18n="ssl.f1.t">Expiry Tracking</h3>
+                            <p class="text-sm text-2" data-i18n="ssl.f1.d">See days remaining for each certificate</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1" data-i18n="ssl.f2.t">Early Warnings</h3>
+                            <p class="text-sm text-2" data-i18n="ssl.f2.d">Alerts at 30, 14, and 7 days before expiry</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1" data-i18n="ssl.f3.t">Issuer Info</h3>
+                            <p class="text-sm text-2" data-i18n="ssl.f3.d">View certificate authority and validity dates</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SSL Card Demo -->
+            <div class="reveal">
+                <div class="card p-6 glow-cyan tilt-card">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold">orvoai.app</div>
+                                <div class="text-sm text-green-400">✓ Valid SSL</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-cyan-400">89</div>
+                            <div class="text-xs text-2">days left</div>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between py-2 border-b border-c">
+                            <span class="text-2">Issuer</span>
+                            <span>Let's Encrypt</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-c">
+                            <span class="text-2">Valid From</span>
+                            <span>Jan 15, 2026</span>
+                        </div>
+                        <div class="flex justify-between py-2">
+                            <span class="text-2">Expires</span>
+                            <span>Apr 15, 2026</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<section class="py-28">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-        <p class="text-sm text-violet-400 font-medium mb-3">Pricing</p>
-        <h2 class="text-3xl md:text-4xl font-semibold mb-4"><span data-i18n="price.t1">Simple</span> <span data-i18n="price.t2">Pricing</span></h2>
-        <p class="text-lg text-2 mb-12" data-i18n="price.sub">Start free, upgrade when you need AI power</p>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10 max-w-4xl mx-auto">
-            <div class="card p-6 hover:border-emerald-500/30"><div class="text-3xl font-semibold text-emerald-400 mb-1">$0</div><div class="text-sm text-2" data-i18n="price.free">Free</div></div>
-            <div class="card p-6 hover:border-violet-500/30"><div class="text-3xl font-semibold text-violet-400 mb-1">$19</div><div class="text-sm text-2" data-i18n="price.pro">Pro /mo</div></div>
-            <div class="card p-6 border-violet-500/30 hover:border-violet-500/50 relative"><div class="absolute -top-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-cyan-500 px-2 py-0.5 rounded-full text-[10px] font-bold text-white">Popular</div><div class="text-3xl font-semibold text-cyan-400 mb-1">$49</div><div class="text-sm text-2" data-i18n="price.business">Business /mo</div></div>
-            <div class="card p-6 hover:border-orange-500/30"><div class="text-3xl font-semibold text-orange-400 mb-1">$149</div><div class="text-sm text-2" data-i18n="price.enterprise">Enterprise /mo</div></div>
-        </div>
-        <a href="pricing.html" class="btn btn-p inline-flex items-center gap-2" data-i18n="price.btn">View All Plans</a>
-    </div>
-</section>
-<section class="py-28 bg-2">
-    <div class="max-w-2xl mx-auto px-6">
-        <h2 class="text-3xl font-semibold text-center mb-12" data-i18n="faq.title">FAQ</h2>
-        <div class="space-y-3">
-            <div class="faq-item card cursor-pointer" onclick="this.classList.toggle('open')"><div class="flex items-center justify-between p-5"><span class="font-medium" data-i18n="faq.q1.q">What is 88 AI?</span><span class="faq-icon text-2 transition-transform text-xl">+</span></div><div class="faq-answer px-5 text-sm text-2"><p class="pb-5" data-i18n="faq.q1.a">88 AI is our prediction engine using EMA, linear regression, and hourly patterns to forecast site health 5 minutes to 1 hour ahead with confidence intervals.</p></div></div>
-            <div class="faq-item card cursor-pointer" onclick="this.classList.toggle('open')"><div class="flex items-center justify-between p-5"><span class="font-medium" data-i18n="faq.q2.q">Which alert channels are available?</span><span class="faq-icon text-2 transition-transform text-xl">+</span></div><div class="faq-answer px-5 text-sm text-2"><p class="pb-5" data-i18n="faq.q2.a">Email, Slack, and Webhooks. Enterprise plans also include SMS alerts.</p></div></div>
-            <div class="faq-item card cursor-pointer" onclick="this.classList.toggle('open')"><div class="flex items-center justify-between p-5"><span class="font-medium" data-i18n="faq.q3.q">How long is the free plan?</span><span class="faq-icon text-2 transition-transform text-xl">+</span></div><div class="faq-answer px-5 text-sm text-2"><p class="pb-5" data-i18n="faq.q3.a">Free plan includes 7 days of history. No credit card required.</p></div></div>
-            <div class="faq-item card cursor-pointer" onclick="this.classList.toggle('open')"><div class="flex items-center justify-between p-5"><span class="font-medium" data-i18n="faq.q4.q">Can I cancel anytime?</span><span class="faq-icon text-2 transition-transform text-xl">+</span></div><div class="faq-answer px-5 text-sm text-2"><p class="pb-5" data-i18n="faq.q4.a">Yes, you can cancel your subscription anytime. No questions asked, no hidden fees.</p></div></div>
-            <div class="faq-item card cursor-pointer" onclick="this.classList.toggle('open')"><div class="flex items-center justify-between p-5"><span class="font-medium" data-i18n="faq.q5.q">How does SSL monitoring work?</span><span class="faq-icon text-2 transition-transform text-xl">+</span></div><div class="faq-answer px-5 text-sm text-2"><p class="pb-5" data-i18n="faq.q5.a">ORVO tracks your SSL certificate expiry dates and alerts you at 30, 14, and 7 days before expiration.</p></div></div>
-        </div>
-    </div>
-</section>
+
+<!-- CTA Section -->
 <section class="py-28 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-50"><div class="absolute top-0 left-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl"></div><div class="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div></div>
-    <div class="max-w-2xl mx-auto px-6 text-center relative z-10">
-        <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="cta.title">Start Monitoring Today</h2>
-        <p class="text-lg text-2 mb-10" data-i18n="cta.sub">Free forever plan available. No credit card required.</p>
-        <div class="flex flex-wrap gap-4 justify-center"><a href="pricing.html" class="btn btn-p text-base" data-i18n="cta.btn1">7 Days Free Trial</a><a href="pricing.html" class="btn btn-s text-base" data-i18n="cta.btn2">View Pricing</a></div>
+    <div class="absolute inset-0 opacity-50">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-2xl mx-auto px-6 text-center relative z-10 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="cta.title">Try It Free</h2>
+        <p class="text-lg text-2 mb-10" data-i18n="cta.sub">7 days free, no credit card required.</p>
+        <div class="flex flex-wrap gap-4 justify-center">
+            <a href="pricing.html" class="btn btn-p text-base ripple" data-i18n="cta.btn1">7 Days Free Trial</a>
+            <a href="pricing.html" class="btn btn-s text-base" data-i18n="cta.btn2">View Pricing</a>
+        </div>
     </div>
 </section>
-<footer class="py-10 border-t border-c bg-2">
+
+<!-- Footer -->
+<footer class="py-12 border-t border-c bg-2">
     <div class="max-w-5xl mx-auto px-6">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-2">
-            <div class="flex items-center gap-2.5"><div class="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-cyan-500"></div><span class="font-medium text-[var(--text)]">ORVO</span></div>
-            <div class="flex items-center gap-6"><a href="#features" class="hover:text-white transition">Features</a><a href="#ai" class="hover:text-white transition">AI</a><a href="pricing.html" class="hover:text-white transition">Pricing</a><a href="terms.html" class="hover:text-white transition">Terms</a><a href="privacy.html" class="hover:text-white transition">Privacy</a></div>
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm">O</div>
+                <span class="font-semibold text-[var(--text)]">ORVO</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#features" class="hover:text-white transition">Features</a>
+                <a href="#ai" class="hover:text-white transition">AI</a>
+                <a href="pricing.html" class="hover:text-white transition">Pricing</a>
+                <a href="terms.html" class="hover:text-white transition">Terms</a>
+                <a href="privacy.html" class="hover:text-white transition">Privacy</a>
+            </div>
             <div class="flex items-center gap-4">
                 <a href="https://twitter.com/orvoai" target="_blank" class="hover:text-white transition" title="Twitter">𝕏</a>
                 <a href="https://github.com/orvoai" target="_blank" class="hover:text-white transition" title="GitHub">
@@ -303,20 +538,223 @@
                 <a href="mailto:support@orvoai.app" class="hover:text-white transition" title="Email">✉️</a>
             </div>
         </div>
-        <div class="text-center text-xs text-3 mt-6">© 2026 ORVO. All rights reserved. Powered by <span class="text-violet-400">88 AI</span></div>
+        <div class="text-center text-xs text-3 mt-8">© 2026 ORVO. All rights reserved. Powered by <span class="text-violet-400">88 AI</span></div>
     </div>
 </footer>
+
 <script>
+// Translations
 const T={
-    en:{'nav.features':'Features','nav.detection':'Detection','nav.ai':'AI','nav.ssl':'SSL','nav.pricing':'Pricing','hero.badge':'✨ Predict Before Downtime','hero.t1':'Warns Before','hero.t2':'It Falls.','hero.sub':'AI-powered website monitoring. SSL certificate tracking, status page, secure authentication.','hero.cta1':'View Pricing','hero.cta2':'See 88 AI','hero.f1':'No credit card','hero.f2':'2 min setup','hero.f3':'SSL monitoring','hero.f4':'Status page','stats.pages':'Pages','stats.api':'API Endpoints','stats.bot':'Bot Systems','stats.i18n':'Translations','new.title':'Key Features','new.sub':'Everything you need for smart monitoring','new.f1.t':'88 AI','new.f1.d':'Predict downtime 5min to 1hr ahead with AI','new.f2.t':'SSL Monitoring','new.f2.d':'Track certificate expiry, get alerts before they expire','new.f3.t':'Instant Alerts','new.f3.d':'Email, Slack, Webhooks - get notified instantly','ssl.title':'Never Miss an Expiry','ssl.sub':'Automatically track SSL certificates for all your monitored sites.','ssl.f1.t':'Expiry Tracking','ssl.f1.d':'See days remaining for each certificate','ssl.f2.t':'Early Warnings','ssl.f2.d':'Alerts at 30, 14, and 7 days before expiry','ssl.f3.t':'Issuer Info','ssl.f3.d':'View certificate authority and validity dates','bot.title':'Bot Protection Detection','bot.sub':'Automatically detect what\'s protecting your target sites','feat.title':'Core Features','feat.sub':'Everything you need for professional monitoring','feat.f1.t':'SSL Monitoring','feat.f1.d':'Track certificate expiry with alerts','feat.f2.t':'JWT Auth','feat.f2.d':'Secure login with role-based access','feat.f3.t':'Public Status','feat.f3.d':'Shareable status page with subscribers','feat.f4.t':'88 AI','feat.f4.d':'5m to 1h predictive forecasts','feat.f5.t':'Bot Detection','feat.f5.d':'10 protection systems auto-detected','feat.f6.t':'PWA Support','feat.f6.d':'Install as app, works offline','feat.f7.t':'Instant Alerts','feat.f7.d':'Slack, Email, Webhooks','feat.f8.t':'Smart Alerts','feat.f8.d':'Cooldown, quiet hours, Slack','feat.f9.t':'Multi-Language','feat.f9.d':'TR/EN with 150+ translations','ai.sub':'Multi-factor prediction engine that forecasts your site\'s health score.','ai.f1.t':'EMA Analysis','ai.f1.d':'Trend detection with recent data weight','ai.f2.t':'Linear Regression','ai.f2.d':'Statistical future predictions','ai.f3.t':'Hour Patterns','ai.f3.d':'Learns daily performance cycles','ai.f4.t':'Confidence Intervals','ai.f4.d':'Best/worst case with ±% range','ai.insight':'Systems stable, no changes expected','price.t1':'Simple','price.t2':'Pricing','price.sub':'Start free, upgrade when you need AI power','price.free':'Free','price.pro':'Pro /mo','price.business':'Business /mo','price.enterprise':'Enterprise /mo','price.btn':'View All Plans','faq.title':'FAQ','faq.q1.q':'What is 88 AI?','faq.q1.a':'88 AI is our prediction engine using EMA, linear regression, and hourly patterns to forecast site health 5 minutes to 1 hour ahead with confidence intervals.','faq.q2.q':'Which alert channels are available?','faq.q2.a':'Email, Slack, and Webhooks. Enterprise plans also include SMS alerts.','faq.q3.q':'How long is the free plan?','faq.q3.a':'Free plan includes 7 days of history. No credit card required.','faq.q4.q':'Can I cancel anytime?','faq.q4.a':'Yes, you can cancel your subscription anytime. No questions asked, no hidden fees.','faq.q5.q':'How does SSL monitoring work?','faq.q5.a':'ORVO tracks your SSL certificate expiry dates and alerts you at 30, 14, and 7 days before expiration.','cta.title':'Try It Free','cta.sub':'7 days free, no credit card required.','cta.btn1':'7 Days Free Trial','cta.btn2':'View Pricing'},
-    tr:{'nav.features':'Özellikler','nav.detection':'Tespit','nav.ai':'AI','nav.ssl':'SSL','nav.pricing':'Fiyatlar','hero.badge':'✨ Düşmeden Önce Tahmin Et','hero.t1':'Düşmeden Önce','hero.t2':'Uyarır.','hero.sub':'AI destekli web sitesi izleme. SSL sertifika takibi, durum sayfası, güvenli kimlik doğrulama.','hero.cta1':'Fiyatları Gör','hero.cta2':'88 AI\'ı Gör','hero.f1':'Kredi kartı yok','hero.f2':'2 dk kurulum','hero.f3':'SSL izleme','hero.f4':'Durum sayfası','stats.pages':'Sayfa','stats.api':'API Endpoint','stats.bot':'Bot Sistemi','stats.i18n':'Çeviri','new.title':'Temel Özellikler','new.sub':'Akıllı izleme için ihtiyacınız olan her şey','new.f1.t':'88 AI','new.f1.d':'AI ile 5dk-1sa önceden kesinti tahmin et','new.f2.t':'SSL İzleme','new.f2.d':'Sertifika süresini takip et, süresi dolmadan uyarı al','new.f3.t':'Anında Uyarılar','new.f3.d':'Email, Slack, Webhooks - anında bildirim al','ssl.title':'Hiçbir Süreyi Kaçırma','ssl.sub':'İzlediğiniz tüm siteler için SSL sertifikalarını otomatik takip edin.','ssl.f1.t':'Süre Takibi','ssl.f1.d':'Her sertifika için kalan günleri görün','ssl.f2.t':'Erken Uyarılar','ssl.f2.d':'Bitiş öncesi 30, 14 ve 7 günde uyarılar','ssl.f3.t':'Sağlayıcı Bilgisi','ssl.f3.d':'Sertifika otoritesi ve geçerlilik tarihlerini görün','bot.title':'Bot Koruma Tespiti','bot.sub':'Hedef sitelerin koruma sistemini otomatik tespit edin','feat.title':'Temel Özellikler','feat.sub':'Profesyonel izleme için gereken her şey','feat.f1.t':'SSL İzleme','feat.f1.d':'Uyarılı sertifika süre takibi','feat.f2.t':'JWT Auth','feat.f2.d':'Rol tabanlı güvenli giriş','feat.f3.t':'Public Status','feat.f3.d':'Aboneli paylaşılabilir durum sayfası','feat.f4.t':'88 AI','feat.f4.d':'5dk-1sa tahmin motorları','feat.f5.t':'Bot Tespiti','feat.f5.d':'10 koruma sistemi otomatik tespit','feat.f6.t':'PWA Desteği','feat.f6.d':'Uygulama olarak yükle, çevrimdışı çalışır','feat.f7.t':'Anında Uyarılar','feat.f7.d':'Slack, Email, Webhooks','feat.f8.t':'Akıllı Bildirimler','feat.f8.d':'Bekleme, sessiz saatler, Slack','feat.f9.t':'Çoklu Dil','feat.f9.d':'150+ TR/EN çeviri','ai.sub':'Sitenizin sağlık skorunu tahmin eden çok faktörlü motor.','ai.f1.t':'EMA Analizi','ai.f1.d':'Son verilere ağırlıklı trend tespiti','ai.f2.t':'Doğrusal Regresyon','ai.f2.d':'İstatistiksel gelecek tahminleri','ai.f3.t':'Saat Kalıpları','ai.f3.d':'Günlük performans döngülerini öğrenir','ai.f4.t':'Güven Aralıkları','ai.f4.d':'±% aralığıyla en iyi/kötü durum','ai.insight':'Sistemler stabil, değişiklik beklenmiyor','price.t1':'Basit','price.t2':'Fiyatlandırma','price.sub':'Ücretsiz başla, AI gücüne ihtiyacın olunca yükselt','price.free':'Ücretsiz','price.pro':'Pro /ay','price.business':'Business /ay','price.enterprise':'Enterprise /ay','price.btn':'Tüm Planları Gör','faq.title':'SSS','faq.q1.q':'88 AI nedir?','faq.q1.a':'88 AI, EMA, doğrusal regresyon ve saat kalıpları kullanarak site sağlığını 5 dakika ile 1 saat öncesinden güven aralıklarıyla tahmin eden motorumuzdur.','faq.q2.q':'Hangi uyarı kanalları mevcut?','faq.q2.a':'Email, Slack ve Webhooks. Enterprise planlarda SMS uyarıları da dahil.','faq.q3.q':'Ücretsiz plan ne kadar sürer?','faq.q3.a':'Ücretsiz plan 7 günlük geçmiş içerir. Kredi kartı gerekmez.','faq.q4.q':'İstediğim zaman iptal edebilir miyim?','faq.q4.a':'Evet, aboneliğinizi istediğiniz zaman iptal edebilirsiniz. Soru sorulmaz, gizli ücret yok.','faq.q5.q':'SSL izleme nasıl çalışır?','faq.q5.a':'ORVO SSL sertifika bitiş tarihlerinizi takip eder ve 30, 14 ve 7 gün önce sizi uyarır.','cta.title':'Hemen Ücretsiz Dene','cta.sub':'7 gün ücretsiz, kredi kartı gerekmez.','cta.btn1':'7 Gün Ücretsiz Dene','cta.btn2':'Fiyatları Gör'}
+    en:{
+        'nav.features':'Features','nav.detection':'Detection','nav.ai':'AI','nav.ssl':'SSL','nav.pricing':'Pricing',
+        'hero.badge':'✨ Predict Before Downtime','hero.t1':'Warns Before','hero.t2':'It Falls.',
+        'hero.cta1':'View Pricing','hero.cta2':'See 88 AI',
+        'hero.f1':'No credit card','hero.f2':'2 min setup','hero.f3':'SSL monitoring','hero.f4':'Status page',
+        'stats.sites':'Sites Monitored','stats.uptime':'% Uptime','stats.response':'ms Response','stats.support':'/7 Support',
+        'feat.title':'Core Features','feat.sub':'Everything you need for professional monitoring',
+        'feat.f1.t':'88 AI','feat.f1.d':'Predict downtime 5min to 1hr ahead with AI',
+        'feat.f2.t':'SSL Monitoring','feat.f2.d':'Track certificate expiry with alerts',
+        'feat.f3.t':'Instant Alerts','feat.f3.d':'Email, Slack, Webhooks - get notified instantly',
+        'feat.f4.t':'Status Pages','feat.f4.d':'Public status page for your users',
+        'feat.f5.t':'Bot Detection','feat.f5.d':'10 protection systems auto-detected',
+        'feat.f6.t':'PWA Support','feat.f6.d':'Install as app, works offline',
+        'ai.sub':'Multi-factor prediction engine that forecasts your site\'s health score.',
+        'ai.f1.t':'EMA Analysis','ai.f1.d':'Trend detection with recent data weight',
+        'ai.f2.t':'Linear Regression','ai.f2.d':'Statistical future predictions',
+        'ai.f3.t':'Hour Patterns','ai.f3.d':'Learns daily performance cycles',
+        'ai.f4.t':'Confidence Intervals','ai.f4.d':'Best/worst case with ±% range',
+        'ai.insight':'✓ Systems stable, no changes expected',
+        'ssl.title':'Never Miss an Expiry','ssl.sub':'Automatically track SSL certificates for all your monitored sites.',
+        'ssl.f1.t':'Expiry Tracking','ssl.f1.d':'See days remaining for each certificate',
+        'ssl.f2.t':'Early Warnings','ssl.f2.d':'Alerts at 30, 14, and 7 days before expiry',
+        'ssl.f3.t':'Issuer Info','ssl.f3.d':'View certificate authority and validity dates',
+        'cta.title':'Try It Free','cta.sub':'7 days free, no credit card required.','cta.btn1':'7 Days Free Trial','cta.btn2':'View Pricing'
+    },
+    tr:{
+        'nav.features':'Özellikler','nav.detection':'Tespit','nav.ai':'AI','nav.ssl':'SSL','nav.pricing':'Fiyatlar',
+        'hero.badge':'✨ Düşmeden Önce Tahmin Et','hero.t1':'Düşmeden Önce','hero.t2':'Uyarır.',
+        'hero.cta1':'Fiyatları Gör','hero.cta2':'88 AI\'ı Gör',
+        'hero.f1':'Kredi kartı yok','hero.f2':'2 dk kurulum','hero.f3':'SSL izleme','hero.f4':'Durum sayfası',
+        'stats.sites':'İzlenen Site','stats.uptime':'% Uptime','stats.response':'ms Yanıt','stats.support':'/7 Destek',
+        'feat.title':'Temel Özellikler','feat.sub':'Profesyonel izleme için gereken her şey',
+        'feat.f1.t':'88 AI','feat.f1.d':'AI ile 5dk-1sa önceden kesinti tahmin et',
+        'feat.f2.t':'SSL İzleme','feat.f2.d':'Sertifika süresini takip et, uyarı al',
+        'feat.f3.t':'Anında Uyarılar','feat.f3.d':'Email, Slack, Webhooks - anında bildirim',
+        'feat.f4.t':'Durum Sayfası','feat.f4.d':'Kullanıcılarınız için public status page',
+        'feat.f5.t':'Bot Tespiti','feat.f5.d':'10 koruma sistemi otomatik tespit',
+        'feat.f6.t':'PWA Desteği','feat.f6.d':'Uygulama olarak yükle, çevrimdışı çalışır',
+        'ai.sub':'Sitenizin sağlık skorunu tahmin eden çok faktörlü motor.',
+        'ai.f1.t':'EMA Analizi','ai.f1.d':'Son verilere ağırlıklı trend tespiti',
+        'ai.f2.t':'Doğrusal Regresyon','ai.f2.d':'İstatistiksel gelecek tahminleri',
+        'ai.f3.t':'Saat Kalıpları','ai.f3.d':'Günlük performans döngülerini öğrenir',
+        'ai.f4.t':'Güven Aralıkları','ai.f4.d':'±% aralığıyla en iyi/kötü durum',
+        'ai.insight':'✓ Sistemler stabil, değişiklik beklenmiyor',
+        'ssl.title':'Hiçbir Süreyi Kaçırma','ssl.sub':'İzlediğiniz tüm siteler için SSL sertifikalarını otomatik takip edin.',
+        'ssl.f1.t':'Süre Takibi','ssl.f1.d':'Her sertifika için kalan günleri görün',
+        'ssl.f2.t':'Erken Uyarılar','ssl.f2.d':'Bitiş öncesi 30, 14 ve 7 günde uyarılar',
+        'ssl.f3.t':'Sağlayıcı Bilgisi','ssl.f3.d':'Sertifika otoritesi ve geçerlilik tarihlerini görün',
+        'cta.title':'Hemen Ücretsiz Dene','cta.sub':'7 gün ücretsiz, kredi kartı gerekmez.','cta.btn1':'7 Gün Ücretsiz Dene','cta.btn2':'Fiyatları Gör'
+    }
 };
-let lang=localStorage.getItem('orvo-lang')||'en';
-function setLang(l){lang=l;localStorage.setItem('orvo-lang',l);document.querySelectorAll('[data-i18n]').forEach(e=>{if(T[l][e.dataset.i18n])e.textContent=T[l][e.dataset.i18n]});document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));}
-function toggleTheme(){const d=document.documentElement,dark=d.dataset.theme==='dark';d.dataset.theme=dark?'light':'dark';localStorage.setItem('orvo-theme',dark?'light':'dark');document.getElementById('sunIcon').classList.toggle('hidden',!dark);document.getElementById('moonIcon').classList.toggle('hidden',dark);}
-function toggleMobileMenu(){const menu=document.getElementById('mobileMenu');const hamburger=document.getElementById('hamburger');menu.classList.toggle('open');hamburger.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';}
-function closeMobileMenu(){const menu=document.getElementById('mobileMenu');const hamburger=document.getElementById('hamburger');menu.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow='';}
-document.addEventListener('DOMContentLoaded',()=>{setLang(lang);const t=localStorage.getItem('orvo-theme');if(t){document.documentElement.dataset.theme=t;document.getElementById('sunIcon').classList.toggle('hidden',t==='light');document.getElementById('moonIcon').classList.toggle('hidden',t==='dark');}});
+
+// Typewriter texts
+const typewriterTexts = {
+    en: ['AI-powered website monitoring.', 'Predict downtime before it happens.', 'SSL tracking & instant alerts.', 'Know before it breaks.'],
+    tr: ['AI destekli web sitesi izleme.', 'Kesintileri olmadan önce tahmin et.', 'SSL takibi ve anında uyarılar.', 'Düşmeden önce öğren.']
+};
+
+let lang = localStorage.getItem('orvo-lang') || 'en';
+let typewriterIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+// Language
+function setLang(l) {
+    lang = l;
+    localStorage.setItem('orvo-lang', l);
+    document.querySelectorAll('[data-i18n]').forEach(e => {
+        if (T[l][e.dataset.i18n]) e.textContent = T[l][e.dataset.i18n];
+    });
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+}
+
+// Theme
+function toggleTheme() {
+    const d = document.documentElement;
+    const dark = d.dataset.theme === 'dark';
+    d.dataset.theme = dark ? 'light' : 'dark';
+    localStorage.setItem('orvo-theme', dark ? 'light' : 'dark');
+    document.getElementById('sunIcon').classList.toggle('hidden', !dark);
+    document.getElementById('moonIcon').classList.toggle('hidden', dark);
+}
+
+// Mobile Menu
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+
+function closeMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+    menu.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+// Typewriter Effect
+function typeWriter() {
+    const el = document.getElementById('typewriter');
+    const texts = typewriterTexts[lang];
+    const currentText = texts[typewriterIndex];
+    
+    if (isDeleting) {
+        el.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        el.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+    }
+    
+    let typeSpeed = isDeleting ? 30 : 80;
+    
+    if (!isDeleting && charIndex === currentText.length) {
+        typeSpeed = 2000;
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        typewriterIndex = (typewriterIndex + 1) % texts.length;
+        typeSpeed = 500;
+    }
+    
+    setTimeout(typeWriter, typeSpeed);
+}
+
+// Counter Animation
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const target = parseFloat(counter.dataset.target);
+        const isDecimal = target % 1 !== 0;
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        
+        const updateCounter = () => {
+            current += step;
+            if (current < target) {
+                counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = isDecimal ? target.toFixed(1) : target;
+            }
+        };
+        
+        updateCounter();
+    });
+}
+
+// Scroll Reveal
+function reveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+            el.classList.add('active');
+        }
+    });
+}
+
+// Parallax Effect
+function parallax() {
+    const scrolled = window.pageYOffset;
+    document.querySelectorAll('.floating-element').forEach((el, i) => {
+        const speed = 0.05 + (i * 0.02);
+        el.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    setLang(lang);
+    
+    const t = localStorage.getItem('orvo-theme');
+    if (t) {
+        document.documentElement.dataset.theme = t;
+        document.getElementById('sunIcon').classList.toggle('hidden', t === 'light');
+        document.getElementById('moonIcon').classList.toggle('hidden', t === 'dark');
+    }
+    
+    // Start typewriter
+    setTimeout(typeWriter, 1000);
+    
+    // Start counters when visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.disconnect();
+            }
+        });
+    });
+    
+    const statsSection = document.querySelector('.counter');
+    if (statsSection) observer.observe(statsSection);
+    
+    // Reveal elements
+    reveal();
+});
+
+window.addEventListener('scroll', () => {
+    reveal();
+    parallax();
+});
 </script>
 </body>
 </html>
