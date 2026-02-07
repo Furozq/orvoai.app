@@ -124,8 +124,7 @@
                 <svg id="sunIcon" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                 <svg id="moonIcon" class="w-[18px] h-[18px] hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
             </button>
-            <a href="login.html" class="btn btn-s text-sm desktop-btns" id="navLogin">Login</a>
-            <a href="dashboard.html" class="btn btn-p text-sm desktop-btns" id="navDashboard" style="display:none">Dashboard</a>
+            <a href="pricing.html" class="btn btn-p text-sm desktop-btns" data-i18n="nav.pricing">Pricing</a>
             <!-- Hamburger -->
             <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
                 <span></span>
@@ -148,9 +147,8 @@
         <button onclick="setLang('en');closeMobileMenu()" class="lang-btn flex-1 py-3 rounded-lg text-center bg-2" data-lang="en">🇬🇧 EN</button>
         <button onclick="setLang('tr');closeMobileMenu()" class="lang-btn flex-1 py-3 rounded-lg text-center bg-2" data-lang="tr">🇹🇷 TR</button>
     </div>
-    <div class="flex flex-col gap-3 mt-4 px-4" id="mobileAuthBtns">
-        <a href="login.html" class="btn btn-s text-center" id="mobileLogin">Login</a>
-        <a href="dashboard.html" class="btn btn-p text-center" id="mobileDashboard" style="display:none">Dashboard</a>
+    <div class="flex flex-col gap-3 mt-4 px-4">
+        <a href="pricing.html" class="btn btn-p text-center" data-i18n="nav.pricing">Pricing</a>
     </div>
 </div>
 
@@ -160,7 +158,7 @@
     <div class="max-w-3xl mx-auto px-6 text-center py-32 relative z-10">
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-2 border border-c text-sm text-2 mb-8">
             <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-            <span data-i18n="hero.badge">v2.9 — SSL Monitoring, JWT Auth & Public Status</span>
+            <span data-i18n="hero.badge">✨ Predict Before Downtime</span>
         </div>
         
         <h1 class="text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 tracking-tight leading-[1.1]">
@@ -173,8 +171,8 @@
         </p>
         
         <div class="flex flex-wrap gap-4 justify-center mb-16">
-            <a href="login.html" class="btn btn-p text-base" data-i18n="hero.cta1">Start Monitoring</a>
-            <a href="public-status.html" class="btn btn-s text-base" data-i18n="hero.cta2">View Status Page</a>
+            <a href="pricing.html" class="btn btn-p text-base" data-i18n="hero.cta1">View Pricing</a>
+            <a href="#ai" class="btn btn-s text-base" data-i18n="hero.cta2">See 88 AI Pro</a>
         </div>
         
         <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-3">
@@ -208,31 +206,30 @@
     </div>
 </section>
 
-<!-- New in v2.9 -->
+<!-- Why ORVO -->
 <section class="py-28 bg-gradient-to-b from-violet-500/5 to-transparent">
     <div class="max-w-5xl mx-auto px-6">
         <div class="text-center mb-14">
-            <span class="new-badge">NEW</span>
-            <p class="text-sm text-violet-400 font-medium mb-3 mt-4">Version 2.9</p>
-            <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="new.title">What's New</h2>
-            <p class="text-lg text-2" data-i18n="new.sub">Major features added in this release</p>
+            <p class="text-sm text-violet-400 font-medium mb-3">Why ORVO?</p>
+            <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="new.title">Key Features</h2>
+            <p class="text-lg text-2" data-i18n="new.sub">Everything you need for smart monitoring</p>
         </div>
         
         <div class="grid md:grid-cols-3 gap-6">
             <div class="card p-8 text-center group hover:border-cyan-500/30">
-                <div class="text-5xl mb-4">🔒</div>
-                <h3 class="font-semibold text-lg mb-2" data-i18n="new.f1.t">SSL Monitoring</h3>
-                <p class="text-sm text-2" data-i18n="new.f1.d">Track certificate expiry dates, get alerts before they expire</p>
+                <div class="text-5xl mb-4">🔮</div>
+                <h3 class="font-semibold text-lg mb-2" data-i18n="new.f1.t">88 AI Pro</h3>
+                <p class="text-sm text-2" data-i18n="new.f1.d">Predict downtime 5min to 1hr ahead with AI</p>
             </div>
             <div class="card p-8 text-center group hover:border-violet-500/30">
-                <div class="text-5xl mb-4">🔐</div>
-                <h3 class="font-semibold text-lg mb-2" data-i18n="new.f2.t">JWT Authentication</h3>
-                <p class="text-sm text-2" data-i18n="new.f2.d">Secure login system with role-based access control</p>
+                <div class="text-5xl mb-4">🔒</div>
+                <h3 class="font-semibold text-lg mb-2" data-i18n="new.f2.t">SSL Monitoring</h3>
+                <p class="text-sm text-2" data-i18n="new.f2.d">Track certificate expiry, get alerts before they expire</p>
             </div>
             <div class="card p-8 text-center group hover:border-emerald-500/30">
-                <div class="text-5xl mb-4">🌐</div>
-                <h3 class="font-semibold text-lg mb-2" data-i18n="new.f3.t">Public Status Page</h3>
-                <p class="text-sm text-2" data-i18n="new.f3.d">Share service status with subscribers and embed on your site</p>
+                <div class="text-5xl mb-4">⚡</div>
+                <h3 class="font-semibold text-lg mb-2" data-i18n="new.f3.t">Instant Alerts</h3>
+                <p class="text-sm text-2" data-i18n="new.f3.d">Email, Slack, Webhooks - get notified instantly</p>
             </div>
         </div>
     </div>
@@ -384,9 +381,9 @@
                 <p class="text-sm text-2" data-i18n="feat.f6.d">Install as app, works offline</p>
             </div>
             <div class="card p-6 group">
-                <div class="text-3xl mb-4 group-hover:scale-110 transition">📧</div>
-                <h3 class="font-medium mb-2" data-i18n="feat.f7.t">Email Alerts</h3>
-                <p class="text-sm text-2" data-i18n="feat.f7.d">HTML emails with AI predictions</p>
+                <div class="text-3xl mb-4 group-hover:scale-110 transition">⚡</div>
+                <h3 class="font-medium mb-2" data-i18n="feat.f7.t">Instant Alerts</h3>
+                <p class="text-sm text-2" data-i18n="feat.f7.d">Slack, Email, Webhooks</p>
             </div>
             <div class="card p-6 group">
                 <div class="text-3xl mb-4 group-hover:scale-110 transition">🔔</div>
@@ -481,18 +478,23 @@
         <h2 class="text-3xl md:text-4xl font-semibold mb-4"><span data-i18n="price.t1">Simple</span> <span data-i18n="price.t2">Pricing</span></h2>
         <p class="text-lg text-2 mb-12" data-i18n="price.sub">Start free, upgrade when you need AI power</p>
         
-        <div class="grid grid-cols-3 gap-4 mb-10 max-w-2xl mx-auto">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10 max-w-4xl mx-auto">
             <div class="card p-6 hover:border-emerald-500/30">
-                <div class="text-4xl font-semibold text-emerald-400 mb-1">$0</div>
-                <div class="text-sm text-2" data-i18n="price.free">Free Plan</div>
+                <div class="text-3xl font-semibold text-emerald-400 mb-1">$0</div>
+                <div class="text-sm text-2" data-i18n="price.free">Free</div>
             </div>
-            <div class="card p-6 border-violet-500/30 hover:border-violet-500/50">
-                <div class="text-4xl font-semibold text-violet-400 mb-1">$19</div>
+            <div class="card p-6 hover:border-violet-500/30">
+                <div class="text-3xl font-semibold text-violet-400 mb-1">$19</div>
                 <div class="text-sm text-2" data-i18n="price.pro">Pro /mo</div>
             </div>
-            <div class="card p-6 hover:border-cyan-500/30">
-                <div class="text-4xl font-semibold text-cyan-400 mb-1">$49</div>
+            <div class="card p-6 border-violet-500/30 hover:border-violet-500/50 relative">
+                <div class="absolute -top-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-cyan-500 px-2 py-0.5 rounded-full text-[10px] font-bold text-white">Popular</div>
+                <div class="text-3xl font-semibold text-cyan-400 mb-1">$49</div>
                 <div class="text-sm text-2" data-i18n="price.business">Business /mo</div>
+            </div>
+            <div class="card p-6 hover:border-orange-500/30">
+                <div class="text-3xl font-semibold text-orange-400 mb-1">$99</div>
+                <div class="text-sm text-2" data-i18n="price.enterprise">Enterprise /mo</div>
             </div>
         </div>
         
@@ -508,41 +510,51 @@
         <div class="space-y-3">
             <div class="faq-item card cursor-pointer" onclick="this.classList.toggle('open')">
                 <div class="flex items-center justify-between p-5">
-                    <span class="font-medium" data-i18n="faq.q1.q">What's new in v2.9?</span>
+                    <span class="font-medium" data-i18n="faq.q1.q">What is 88 AI Pro?</span>
                     <span class="faq-icon text-2 transition-transform text-xl">+</span>
                 </div>
                 <div class="faq-answer px-5 text-sm text-2">
-                    <p class="pb-5" data-i18n="faq.q1.a">SSL certificate monitoring, JWT authentication with role-based access, public status pages with subscriber system, and improved PWA support.</p>
+                    <p class="pb-5" data-i18n="faq.q1.a">88 AI Pro is our prediction engine using EMA, linear regression, and hourly patterns to forecast site health 5 minutes to 1 hour ahead with confidence intervals.</p>
                 </div>
             </div>
             
             <div class="faq-item card cursor-pointer" onclick="this.classList.toggle('open')">
                 <div class="flex items-center justify-between p-5">
-                    <span class="font-medium" data-i18n="faq.q2.q">How does SSL monitoring work?</span>
+                    <span class="font-medium" data-i18n="faq.q2.q">Which alert channels are available?</span>
                     <span class="faq-icon text-2 transition-transform text-xl">+</span>
                 </div>
                 <div class="faq-answer px-5 text-sm text-2">
-                    <p class="pb-5" data-i18n="faq.q2.a">ORVO automatically checks SSL certificates for all your monitored sites, showing days until expiry and alerting you at 30, 14, and 7 days before expiration.</p>
+                    <p class="pb-5" data-i18n="faq.q2.a">Email, Slack, and Webhooks. Enterprise plans also include SMS alerts.</p>
                 </div>
             </div>
             
             <div class="faq-item card cursor-pointer" onclick="this.classList.toggle('open')">
                 <div class="flex items-center justify-between p-5">
-                    <span class="font-medium" data-i18n="faq.q3.q">How does 88 AI Pro work?</span>
+                    <span class="font-medium" data-i18n="faq.q3.q">How long is the free plan?</span>
                     <span class="faq-icon text-2 transition-transform text-xl">+</span>
                 </div>
                 <div class="faq-answer px-5 text-sm text-2">
-                    <p class="pb-5" data-i18n="faq.q3.a">Uses EMA, linear regression, volatility analysis, and hourly patterns for 5m-1h forecasts with confidence intervals.</p>
+                    <p class="pb-5" data-i18n="faq.q3.a">Free plan includes 7 days of history. No credit card required.</p>
                 </div>
             </div>
             
             <div class="faq-item card cursor-pointer" onclick="this.classList.toggle('open')">
                 <div class="flex items-center justify-between p-5">
-                    <span class="font-medium" data-i18n="faq.q4.q">Is authentication required?</span>
+                    <span class="font-medium" data-i18n="faq.q4.q">Can I cancel anytime?</span>
                     <span class="faq-icon text-2 transition-transform text-xl">+</span>
                 </div>
                 <div class="faq-answer px-5 text-sm text-2">
-                    <p class="pb-5" data-i18n="faq.q4.a">Yes, dashboard access requires login. The public status page is accessible without authentication so you can share it with your users.</p>
+                    <p class="pb-5" data-i18n="faq.q4.a">Yes, you can cancel your subscription anytime. No questions asked, no hidden fees.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item card cursor-pointer" onclick="this.classList.toggle('open')">
+                <div class="flex items-center justify-between p-5">
+                    <span class="font-medium" data-i18n="faq.q5.q">How does SSL monitoring work?</span>
+                    <span class="faq-icon text-2 transition-transform text-xl">+</span>
+                </div>
+                <div class="faq-answer px-5 text-sm text-2">
+                    <p class="pb-5" data-i18n="faq.q5.a">ORVO tracks your SSL certificate expiry dates and alerts you at 30, 14, and 7 days before expiration.</p>
                 </div>
             </div>
         </div>
@@ -559,8 +571,8 @@
         <h2 class="text-3xl md:text-4xl font-semibold mb-4" data-i18n="cta.title">Start Monitoring Today</h2>
         <p class="text-lg text-2 mb-10" data-i18n="cta.sub">Free forever plan available. No credit card required.</p>
         <div class="flex flex-wrap gap-4 justify-center">
-            <a href="login.html" class="btn btn-p text-base" data-i18n="cta.btn1">Create Account</a>
-            <a href="public-status.html" class="btn btn-s text-base" data-i18n="cta.btn2">View Status Page</a>
+            <a href="pricing.html" class="btn btn-p text-base" data-i18n="cta.btn1">View Pricing</a>
+            <a href="mailto:support@orvoai.app" class="btn btn-s text-base" data-i18n="cta.btn2">Contact Us</a>
         </div>
     </div>
 </section>
@@ -571,33 +583,31 @@
         <div class="flex items-center gap-2.5">
             <div class="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-cyan-500"></div>
             <span class="font-medium text-[var(--text)]">ORVO</span>
-            <span class="text-3">v2.9</span>
         </div>
         <div class="flex items-center gap-6">
-            <a href="login.html" class="hover:text-white transition">Login</a>
-            <a href="dashboard.html" class="hover:text-white transition">Dashboard</a>
-            <a href="public-status.html" class="hover:text-white transition">Status</a>
+            <a href="#features" class="hover:text-white transition">Features</a>
+            <a href="#ai" class="hover:text-white transition">AI</a>
             <a href="pricing.html" class="hover:text-white transition">Pricing</a>
             <a href="terms.html" class="hover:text-white transition">Terms</a>
             <a href="privacy.html" class="hover:text-white transition">Privacy</a>
         </div>
-        <div>by <span class="text-violet-400 font-medium">Özgür</span></div>
+        <div>by <span class="text-violet-400 font-medium">88 AI</span></div>
     </div>
 </footer>
 
 <script>
 const T={
     en:{
-        'hero.badge':'v2.9 — SSL Monitoring, JWT Auth & Public Status',
+        'hero.badge':'✨ Predict Before Downtime',
         'hero.t1':'Warns Before','hero.t2':'It Falls.',
         'hero.sub':'AI-powered website monitoring. SSL certificate tracking, public status pages, secure authentication.',
-        'hero.cta1':'Start Monitoring','hero.cta2':'View Status Page',
+        'hero.cta1':'View Pricing','hero.cta2':'See 88 AI Pro',
         'hero.f1':'No credit card','hero.f2':'2 min setup','hero.f3':'SSL monitoring','hero.f4':'Public status page',
         'stats.pages':'Pages','stats.api':'API Endpoints','stats.bot':'Bot Systems','stats.i18n':'Translations',
-        'new.title':'What\'s New','new.sub':'Major features added in this release',
-        'new.f1.t':'SSL Monitoring','new.f1.d':'Track certificate expiry dates, get alerts before they expire',
-        'new.f2.t':'JWT Authentication','new.f2.d':'Secure login system with role-based access control',
-        'new.f3.t':'Public Status Page','new.f3.d':'Share service status with subscribers and embed on your site',
+        'new.title':'Key Features','new.sub':'Everything you need for smart monitoring',
+        'new.f1.t':'88 AI Pro','new.f1.d':'Predict downtime 5min to 1hr ahead with AI',
+        'new.f2.t':'SSL Monitoring','new.f2.d':'Track certificate expiry, get alerts before they expire',
+        'new.f3.t':'Instant Alerts','new.f3.d':'Email, Slack, Webhooks - get notified instantly',
         'ssl.title':'Never Miss an Expiry','ssl.sub':'Automatically track SSL certificates for all your monitored sites.',
         'ssl.f1.t':'Expiry Tracking','ssl.f1.d':'See days remaining for each certificate',
         'ssl.f2.t':'Early Warnings','ssl.f2.d':'Alerts at 30, 14, and 7 days before expiry',
@@ -610,7 +620,7 @@ const T={
         'feat.f4.t':'88 AI Pro','feat.f4.d':'5m to 1h predictive forecasts',
         'feat.f5.t':'Bot Detection','feat.f5.d':'10 protection systems auto-detected',
         'feat.f6.t':'PWA Support','feat.f6.d':'Install as app, works offline',
-        'feat.f7.t':'Email Alerts','feat.f7.d':'HTML emails with AI predictions',
+        'feat.f7.t':'Instant Alerts','feat.f7.d':'Slack, Email, Webhooks',
         'feat.f8.t':'Smart Alerts','feat.f8.d':'Cooldown, quiet hours, Slack',
         'feat.f9.t':'Multi-Language','feat.f9.d':'TR/EN with 150+ translations',
         'ai.sub':'Multi-factor prediction engine that forecasts your site\'s health score.',
@@ -620,25 +630,26 @@ const T={
         'ai.f4.t':'Confidence Intervals','ai.f4.d':'Best/worst case with ±% range',
         'ai.insight':'Systems stable, no changes expected',
         'price.t1':'Simple','price.t2':'Pricing','price.sub':'Start free, upgrade when you need AI power',
-        'price.free':'Free Plan','price.pro':'Pro /mo','price.business':'Business /mo','price.btn':'View All Plans',
+        'price.free':'Free','price.pro':'Pro /mo','price.business':'Business /mo','price.enterprise':'Enterprise /mo','price.btn':'View All Plans',
         'faq.title':'FAQ',
-        'faq.q1.q':'What\'s new in v2.9?','faq.q1.a':'SSL certificate monitoring, JWT authentication with role-based access, public status pages with subscriber system, and improved PWA support.',
-        'faq.q2.q':'How does SSL monitoring work?','faq.q2.a':'ORVO automatically checks SSL certificates for all your monitored sites, showing days until expiry and alerting you at 30, 14, and 7 days before expiration.',
-        'faq.q3.q':'How does 88 AI Pro work?','faq.q3.a':'Uses EMA, linear regression, volatility analysis, and hourly patterns for 5m-1h forecasts with confidence intervals.',
-        'faq.q4.q':'Is authentication required?','faq.q4.a':'Yes, dashboard access requires login. The public status page is accessible without authentication so you can share it with your users.',
-        'cta.title':'Start Monitoring Today','cta.sub':'Free forever plan available. No credit card required.','cta.btn1':'Create Account','cta.btn2':'View Status Page'
+        'faq.q1.q':'What is 88 AI Pro?','faq.q1.a':'88 AI Pro is our prediction engine using EMA, linear regression, and hourly patterns to forecast site health 5 minutes to 1 hour ahead with confidence intervals.',
+        'faq.q2.q':'Which alert channels are available?','faq.q2.a':'Email, Slack, and Webhooks. Enterprise plans also include SMS alerts.',
+        'faq.q3.q':'How long is the free plan?','faq.q3.a':'Free plan includes 7 days of history. No credit card required.',
+        'faq.q4.q':'Can I cancel anytime?','faq.q4.a':'Yes, you can cancel your subscription anytime. No questions asked, no hidden fees.',
+        'faq.q5.q':'How does SSL monitoring work?','faq.q5.a':'ORVO tracks your SSL certificate expiry dates and alerts you at 30, 14, and 7 days before expiration.',
+        'cta.title':'Start Monitoring Today','cta.sub':'Free forever plan available. No credit card required.','cta.btn1':'View Pricing','cta.btn2':'Contact Us'
     },
     tr:{
-        'hero.badge':'v2.9 — SSL İzleme, JWT Auth & Public Status',
+        'hero.badge':'✨ Düşmeden Önce Tahmin Et',
         'hero.t1':'Düşmeden Önce','hero.t2':'Uyarır.',
         'hero.sub':'AI destekli web sitesi izleme. SSL sertifika takibi, public durum sayfaları, güvenli kimlik doğrulama.',
-        'hero.cta1':'İzlemeye Başla','hero.cta2':'Durum Sayfasını Gör',
+        'hero.cta1':'Fiyatları Gör','hero.cta2':'88 AI Pro\'yu Gör',
         'hero.f1':'Kredi kartı yok','hero.f2':'2 dk kurulum','hero.f3':'SSL izleme','hero.f4':'Public durum sayfası',
         'stats.pages':'Sayfa','stats.api':'API Endpoint','stats.bot':'Bot Sistemi','stats.i18n':'Çeviri',
-        'new.title':'Yenilikler','new.sub':'Bu sürümde eklenen önemli özellikler',
-        'new.f1.t':'SSL İzleme','new.f1.d':'Sertifika bitiş tarihlerini takip edin, süresi dolmadan uyarı alın',
-        'new.f2.t':'JWT Kimlik Doğrulama','new.f2.d':'Rol tabanlı erişim kontrolü ile güvenli giriş sistemi',
-        'new.f3.t':'Public Durum Sayfası','new.f3.d':'Servis durumunu abonelerle paylaşın ve sitenize gömün',
+        'new.title':'Temel Özellikler','new.sub':'Akıllı izleme için ihtiyacınız olan her şey',
+        'new.f1.t':'88 AI Pro','new.f1.d':'AI ile 5dk-1sa önceden kesinti tahmin et',
+        'new.f2.t':'SSL İzleme','new.f2.d':'Sertifika süresini takip et, süresi dolmadan uyarı al',
+        'new.f3.t':'Anında Uyarılar','new.f3.d':'Email, Slack, Webhooks - anında bildirim al',
         'ssl.title':'Hiçbir Süreyi Kaçırma','ssl.sub':'İzlediğiniz tüm siteler için SSL sertifikalarını otomatik takip edin.',
         'ssl.f1.t':'Süre Takibi','ssl.f1.d':'Her sertifika için kalan günleri görün',
         'ssl.f2.t':'Erken Uyarılar','ssl.f2.d':'Bitiş öncesi 30, 14 ve 7 günde uyarılar',
@@ -651,7 +662,7 @@ const T={
         'feat.f4.t':'88 AI Pro','feat.f4.d':'5dk-1sa tahmin motorları',
         'feat.f5.t':'Bot Tespiti','feat.f5.d':'10 koruma sistemi otomatik tespit',
         'feat.f6.t':'PWA Desteği','feat.f6.d':'Uygulama olarak yükle, çevrimdışı çalışır',
-        'feat.f7.t':'Email Uyarıları','feat.f7.d':'AI tahminli HTML emailler',
+        'feat.f7.t':'Anında Uyarılar','feat.f7.d':'Slack, Email, Webhooks',
         'feat.f8.t':'Akıllı Bildirimler','feat.f8.d':'Bekleme, sessiz saatler, Slack',
         'feat.f9.t':'Çoklu Dil','feat.f9.d':'150+ TR/EN çeviri',
         'ai.sub':'Sitenizin sağlık skorunu tahmin eden çok faktörlü motor.',
@@ -661,13 +672,14 @@ const T={
         'ai.f4.t':'Güven Aralıkları','ai.f4.d':'±% aralığıyla en iyi/kötü durum',
         'ai.insight':'Sistemler stabil, değişiklik beklenmiyor',
         'price.t1':'Basit','price.t2':'Fiyatlandırma','price.sub':'Ücretsiz başla, AI gücüne ihtiyacın olunca yükselt',
-        'price.free':'Ücretsiz Plan','price.pro':'Pro /ay','price.business':'Business /ay','price.btn':'Tüm Planları Gör',
+        'price.free':'Ücretsiz','price.pro':'Pro /ay','price.business':'Business /ay','price.enterprise':'Enterprise /ay','price.btn':'Tüm Planları Gör',
         'faq.title':'SSS',
-        'faq.q1.q':'v2.9\'da neler yeni?','faq.q1.a':'SSL sertifika izleme, rol tabanlı JWT kimlik doğrulama, abone sistemli public durum sayfaları ve geliştirilmiş PWA desteği.',
-        'faq.q2.q':'SSL izleme nasıl çalışır?','faq.q2.a':'ORVO izlediğiniz tüm sitelerin SSL sertifikalarını otomatik kontrol eder, bitiş süresini gösterir ve 30, 14, 7 gün öncesinde uyarır.',
-        'faq.q3.q':'88 AI Pro nasıl çalışır?','faq.q3.a':'EMA, doğrusal regresyon, volatilite analizi ve saat kalıpları kullanarak 5dk-1sa güven aralıklı tahminler yapar.',
-        'faq.q4.q':'Kimlik doğrulama zorunlu mu?','faq.q4.a':'Evet, dashboard erişimi için giriş gerekli. Public durum sayfası kimlik doğrulaması olmadan erişilebilir, böylece kullanıcılarınızla paylaşabilirsiniz.',
-        'cta.title':'Bugün İzlemeye Başla','cta.sub':'Sonsuza kadar ücretsiz plan mevcut. Kredi kartı gerekmez.','cta.btn1':'Hesap Oluştur','cta.btn2':'Durum Sayfasını Gör'
+        'faq.q1.q':'88 AI Pro nedir?','faq.q1.a':'88 AI Pro, EMA, doğrusal regresyon ve saat kalıpları kullanarak site sağlığını 5 dakika ile 1 saat öncesinden güven aralıklarıyla tahmin eden motorumuzdur.',
+        'faq.q2.q':'Hangi uyarı kanalları mevcut?','faq.q2.a':'Email, Slack ve Webhooks. Enterprise planlarda SMS uyarıları da dahil.',
+        'faq.q3.q':'Ücretsiz plan ne kadar sürer?','faq.q3.a':'Ücretsiz plan 7 günlük geçmiş içerir. Kredi kartı gerekmez.',
+        'faq.q4.q':'İstediğim zaman iptal edebilir miyim?','faq.q4.a':'Evet, aboneliğinizi istediğiniz zaman iptal edebilirsiniz. Soru sorulmaz, gizli ücret yok.',
+        'faq.q5.q':'SSL izleme nasıl çalışır?','faq.q5.a':'ORVO SSL sertifika bitiş tarihlerinizi takip eder ve 30, 14 ve 7 gün önce sizi uyarır.',
+        'cta.title':'Bugün İzlemeye Başla','cta.sub':'Sonsuza kadar ücretsiz plan mevcut. Kredi kartı gerekmez.','cta.btn1':'Fiyatları Gör','cta.btn2':'İletişim'
     }
 };
 
@@ -707,16 +719,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     setLang(lang);
     const t=localStorage.getItem('orvo-theme');
     if(t){document.documentElement.dataset.theme=t;document.getElementById('sunIcon').classList.toggle('hidden',t==='light');document.getElementById('moonIcon').classList.toggle('hidden',t==='dark');}
-    
-    // Check login status
-    const token=localStorage.getItem('orvo_token');
-    if(token){
-        // Logged in - show Dashboard
-        document.getElementById('navLogin').style.display='none';
-        document.getElementById('navDashboard').style.display='';
-        document.getElementById('mobileLogin').style.display='none';
-        document.getElementById('mobileDashboard').style.display='';
-    }
 });
 </script>
 </body>
