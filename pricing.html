@@ -43,11 +43,11 @@
 
     <!-- Navigation -->
     <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <a href="index.html" class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white font-bold">O</div>
-                    <span class="text-xl font-bold">ORVO</span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="index.html" class="flex items-center gap-2 sm:gap-3">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm sm:text-base">O</div>
+                    <span class="text-lg sm:text-xl font-bold">ORVO</span>
                 </a>
                 <div class="hidden lg:flex items-center gap-8">
                     <a href="index.html#features" class="text-sm text-gray-400 hover:text-white transition" data-i18n="nav.features">Features</a>
@@ -56,52 +56,52 @@
                     <a href="index.html#ssl" class="text-sm text-gray-400 hover:text-white transition" data-i18n="nav.ssl">SSL</a>
                     <a href="#pricing" class="text-sm text-white font-semibold" data-i18n="nav.pricing">Pricing</a>
                 </div>
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 sm:gap-4">
                     <div class="hidden sm:flex items-center rounded-lg overflow-hidden border border-white/10">
                         <button onclick="setLang('en')" data-lang="en" class="lang-btn px-3 py-1.5 text-xs font-semibold transition-all lang-active">EN</button>
                         <button onclick="setLang('tr')" data-lang="tr" class="lang-btn px-3 py-1.5 text-xs font-semibold transition-all text-gray-400">TR</button>
                     </div>
-                    <button onclick="toggleTheme()" class="w-10 h-10 rounded-xl glass flex items-center justify-center">
-                        <svg id="iconSun" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                        <svg id="iconMoon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    <button onclick="toggleTheme()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl glass flex items-center justify-center">
+                        <svg id="iconSun" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        <svg id="iconMoon" class="w-4 h-4 sm:w-5 sm:h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
                     </button>
-                    <a href="login.html" class="btn-primary px-5 py-2 rounded-xl text-sm font-semibold text-white" data-i18n="nav.start">Get Started</a>
+                    <a href="login.html" class="btn-primary px-3 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white" data-i18n="nav.start">Get Started</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero -->
-    <section class="hero-gradient pt-32 pb-16">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
-                <span class="text-green-400 text-sm font-semibold" data-i18n="hero.badge">Simple, transparent pricing</span>
+    <section class="hero-gradient pt-24 sm:pt-32 pb-12 sm:pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full glass mb-4 sm:mb-6">
+                <span class="text-green-400 text-xs sm:text-sm font-semibold" data-i18n="hero.badge">Simple, transparent pricing</span>
             </div>
-            <h1 class="text-4xl lg:text-6xl font-black mb-6">
+            <h1 class="text-3xl sm:text-4xl lg:text-6xl font-black mb-4 sm:mb-6">
                 <span data-i18n="hero.title1">Pay for</span> <span class="grad-text" data-i18n="hero.title2">AI Power</span>
             </h1>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10" data-i18n="hero.subtitle">
+            <p class="text-base sm:text-xl text-gray-400 max-w-2xl mx-auto mb-8 sm:mb-10 px-4" data-i18n="hero.subtitle">
                 Others alert you AFTER downtime. ORVO predicts it BEFORE. That's the AI difference.
             </p>
             
             <!-- Billing Toggle -->
-            <div class="inline-flex items-center gap-4 p-1.5 rounded-full toggle-bg">
-                <button onclick="setBilling('monthly')" id="btnMonthly" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all toggle-active text-white" data-i18n="toggle.monthly">Monthly</button>
-                <button onclick="setBilling('yearly')" id="btnYearly" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all text-gray-400">
+            <div class="inline-flex items-center gap-2 sm:gap-4 p-1 sm:p-1.5 rounded-full toggle-bg">
+                <button onclick="setBilling('monthly')" id="btnMonthly" class="px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all toggle-active text-white" data-i18n="toggle.monthly">Monthly</button>
+                <button onclick="setBilling('yearly')" id="btnYearly" class="px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all text-gray-400">
                     <span data-i18n="toggle.yearly">Yearly</span>
-                    <span class="ml-2 px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded-full" data-i18n="toggle.save">Save 25%</span>
+                    <span class="ml-1 sm:ml-2 px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs bg-green-500/20 text-green-400 rounded-full" data-i18n="toggle.save">Save 25%</span>
                 </button>
             </div>
         </div>
     </section>
 
     <!-- Pricing Cards -->
-    <section id="pricing" class="py-16">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <section id="pricing" class="py-12 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 
                 <!-- Free -->
-                <div class="card rounded-3xl p-8">
+                <div class="card rounded-2xl sm:rounded-3xl p-6 sm:p-8">
                     <div class="mb-6">
                         <h3 class="text-lg font-bold mb-2" data-i18n="free.name">Free</h3>
                         <p class="text-sm text-gray-400" data-i18n="free.desc">7 day trial</p>
@@ -122,7 +122,7 @@
                 </div>
 
                 <!-- Pro -->
-                <div class="card rounded-3xl p-8">
+                <div class="card rounded-2xl sm:rounded-3xl p-6 sm:p-8">
                     <div class="mb-6">
                         <h3 class="text-lg font-bold mb-2" data-i18n="pro.name">Pro</h3>
                         <p class="text-sm text-gray-400" data-i18n="pro.desc">For indie projects</p>
@@ -145,7 +145,7 @@
                 </div>
 
                 <!-- Business (Most Popular) -->
-                <div class="card-popular rounded-3xl p-8 relative">
+                <div class="card-popular rounded-2xl sm:rounded-3xl p-6 sm:p-8 relative">
                     <div class="absolute -top-4 left-1/2 -translate-x-1/2">
                         <span class="badge px-4 py-1.5 text-xs font-bold text-white rounded-full whitespace-nowrap" data-i18n="business.badge">MOST POPULAR</span>
                     </div>
@@ -172,7 +172,7 @@
                 </div>
 
                 <!-- Enterprise -->
-                <div class="card rounded-3xl p-8">
+                <div class="card rounded-2xl sm:rounded-3xl p-6 sm:p-8">
                     <div class="mb-6">
                         <h3 class="text-lg font-bold mb-2" data-i18n="enterprise.name">Enterprise</h3>
                         <p class="text-sm text-gray-400" data-i18n="enterprise.desc">Scale without limits</p>
@@ -199,17 +199,17 @@
     </section>
 
     <!-- AI Value Section -->
-    <section class="py-20 relative">
+    <section class="py-12 sm:py-20 relative">
         <div class="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent"></div>
-        <div class="relative max-w-5xl mx-auto px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl lg:text-4xl font-black mb-4" data-i18n="value.title">Why pay for AI?</h2>
-                <p class="text-gray-400" data-i18n="value.subtitle">The math speaks for itself</p>
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black mb-3 sm:mb-4" data-i18n="value.title">Why pay for AI?</h2>
+                <p class="text-sm sm:text-base text-gray-400" data-i18n="value.subtitle">The math speaks for itself</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
                 <!-- Without AI -->
-                <div class="card rounded-3xl p-8 border-red-500/20">
+                <div class="card rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-red-500/20">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-2xl">😰</div>
                         <div>
@@ -242,7 +242,7 @@
                 </div>
 
                 <!-- With AI -->
-                <div class="card rounded-3xl p-8 border-green-500/20">
+                <div class="card rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-green-500/20">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-2xl">🧠</div>
                         <div>
@@ -275,21 +275,21 @@
                 </div>
             </div>
 
-            <div class="mt-12 text-center glass rounded-2xl p-8">
-                <div class="text-4xl font-black text-green-400 mb-2" data-i18n="value.roi">1 prevented incident = Plan pays for itself</div>
-                <div class="text-gray-400" data-i18n="value.roi2">$49/month vs $1000+ saved. The choice is obvious.</div>
+            <div class="mt-8 sm:mt-12 text-center glass rounded-xl sm:rounded-2xl p-5 sm:p-8">
+                <div class="text-xl sm:text-2xl lg:text-4xl font-black text-green-400 mb-2" data-i18n="value.roi">1 prevented incident = Plan pays for itself</div>
+                <div class="text-sm sm:text-base text-gray-400" data-i18n="value.roi2">$49/month vs $1000+ saved. The choice is obvious.</div>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="py-20">
-        <div class="max-w-3xl mx-auto px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl lg:text-4xl font-black" data-i18n="faq.title">Frequently Asked Questions</h2>
+    <section class="py-12 sm:py-20">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black" data-i18n="faq.title">Frequently Asked Questions</h2>
             </div>
             
-            <div class="space-y-4">
+            <div class="space-y-3 sm:space-y-4">
                 <div class="faq-item glass rounded-2xl overflow-hidden" onclick="toggleFaq(this)">
                     <div class="flex items-center justify-between p-6 cursor-pointer">
                         <h3 class="font-semibold pr-4" data-i18n="faq.q1.q">What is 88 AI?</h3>
@@ -334,25 +334,25 @@
     </section>
 
     <!-- CTA -->
-    <section class="py-20 relative">
+    <section class="py-12 sm:py-20 relative">
         <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-cyan-500/10"></div>
-        <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 class="text-3xl lg:text-5xl font-black mb-6" data-i18n="cta.title">Start monitoring smarter today</h2>
-            <p class="text-xl text-gray-400 mb-10" data-i18n="cta.subtitle">Join teams who predict problems before they happen.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="login.html" class="btn-primary px-10 py-4 rounded-xl text-lg font-bold text-white inline-flex items-center justify-center gap-2">
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl sm:text-3xl lg:text-5xl font-black mb-4 sm:mb-6" data-i18n="cta.title">Start monitoring smarter today</h2>
+            <p class="text-base sm:text-xl text-gray-400 mb-8 sm:mb-10" data-i18n="cta.subtitle">Join teams who predict problems before they happen.</p>
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                <a href="login.html" class="btn-primary px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-sm sm:text-lg font-bold text-white inline-flex items-center justify-center gap-2">
                     <span data-i18n="cta.start">Start Free Trial</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                 </a>
-                <a href="mailto:support@orvoai.app" class="btn-secondary px-10 py-4 rounded-xl text-lg font-semibold inline-flex items-center justify-center gap-2" data-i18n="cta.contact">Contact Sales</a>
+                <a href="mailto:support@orvoai.app" class="btn-secondary px-6 sm:px-10 py-3 sm:py-4 rounded-xl text-sm sm:text-lg font-semibold inline-flex items-center justify-center gap-2" data-i18n="cta.contact">Contact Sales</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+    <footer class="py-8 sm:py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
                 <div class="flex items-center gap-3">
                     <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm">O</div>
                     <span class="font-bold">ORVO</span>
