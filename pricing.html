@@ -51,7 +51,9 @@
                 </a>
                 <div class="hidden lg:flex items-center gap-8">
                     <a href="index.html#features" class="text-sm text-gray-400 hover:text-white transition" data-i18n="nav.features">Features</a>
-                    <a href="index.html#ai" class="text-sm text-gray-400 hover:text-white transition" data-i18n="nav.ai">88 AI Pro</a>
+                    <a href="index.html#detection" class="text-sm text-gray-400 hover:text-white transition" data-i18n="nav.detection">Detection</a>
+                    <a href="index.html#ai" class="text-sm text-gray-400 hover:text-white transition" data-i18n="nav.ai">AI</a>
+                    <a href="index.html#ssl" class="text-sm text-gray-400 hover:text-white transition" data-i18n="nav.ssl">SSL</a>
                     <a href="#pricing" class="text-sm text-white font-semibold" data-i18n="nav.pricing">Pricing</a>
                 </div>
                 <div class="flex items-center gap-4">
@@ -145,7 +147,7 @@
                 <!-- Business (Most Popular) -->
                 <div class="card-popular rounded-3xl p-8 relative">
                     <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-                        <span class="badge px-4 py-1.5 text-xs font-bold text-white rounded-full" data-i18n="business.badge">MOST POPULAR ⭐</span>
+                        <span class="badge px-4 py-1.5 text-xs font-bold text-white rounded-full whitespace-nowrap" data-i18n="business.badge">MOST POPULAR</span>
                     </div>
                     <div class="mb-6">
                         <h3 class="text-lg font-bold mb-2" data-i18n="business.name">Business</h3>
@@ -370,7 +372,7 @@
         // Translations
         const i18n = {
             en: {
-                'nav.features': 'Features', 'nav.ai': '88 AI Pro', 'nav.pricing': 'Pricing', 'nav.start': 'Get Started',
+                'nav.features': 'Features', 'nav.detection': 'Detection', 'nav.ai': 'AI', 'nav.ssl': 'SSL', 'nav.pricing': 'Pricing', 'nav.start': 'Get Started',
                 'hero.badge': 'Know Before Downtime', 'hero.title1': 'Protected with', 'hero.title2': 'AI Power',
                 'hero.subtitle': 'Others alert after downtime. ORVO predicts problems before they happen.',
                 'toggle.monthly': 'Monthly', 'toggle.yearly': 'Yearly', 'toggle.save': 'Save 25%',
@@ -378,7 +380,7 @@
                 'free.f1': 'websites', 'free.f2': 'min checks', 'free.f3': 'days history', 'free.f4': 'Email alerts',
                 'pro.name': 'Pro', 'pro.desc': 'For indie projects', 'pro.period': 'month', 'pro.cta': 'Start Pro',
                 'pro.f1': 'websites', 'pro.f2': 'min checks', 'pro.f3': 'days history', 'pro.f4': 'Email alerts', 'pro.f5': 'SSL Monitoring', 'pro.f7': 'Team members',
-                'business.name': 'Business', 'business.desc': 'For growing teams', 'business.period': 'month', 'business.cta': 'Start Business', 'business.badge': 'MOST POPULAR ⭐',
+                'business.name': 'Business', 'business.desc': 'For growing teams', 'business.period': 'month', 'business.cta': 'Start Business', 'business.badge': 'MOST POPULAR',
                 'business.f1': 'websites', 'business.f2': 'sec checks', 'business.f3': 'year history', 'business.f4': 'Email + Webhooks', 'business.f5': 'SSL + Domain Monitoring', 'business.f8': 'team members', 'business.f9': 'API Access', 'business.f10': 'Status Page',
                 'enterprise.name': 'Enterprise', 'enterprise.desc': 'Scale without limits', 'enterprise.period': 'month+', 'enterprise.cta': 'Contact Sales',
                 'enterprise.f1': 'websites / custom', 'enterprise.f2': 'sec checks', 'enterprise.f3': 'years history', 'enterprise.f4': 'Email + Webhooks + SMS', 'enterprise.f9': 'Unlimited team', 'enterprise.f10': 'SLA 99.9%', 'enterprise.f11': 'Priority support', 'enterprise.f12': 'White-label',
@@ -399,7 +401,7 @@
                 'cta.title': 'Start Predicting Downtime', 'cta.subtitle': 'Join teams who predict problems before they happen.', 'cta.start': '7 Days Free Trial', 'cta.contact': 'Contact Us'
             },
             tr: {
-                'nav.features': 'Özellikler', 'nav.ai': '88 AI Pro', 'nav.pricing': 'Fiyatlar', 'nav.start': 'Başla',
+                'nav.features': 'Özellikler', 'nav.detection': 'Tespit', 'nav.ai': 'AI', 'nav.ssl': 'SSL', 'nav.pricing': 'Fiyatlar', 'nav.start': 'Başla',
                 'hero.badge': 'Kesinti Olmadan Önce Öğren', 'hero.title1': 'AI gücüyle', 'hero.title2': 'korunun',
                 'hero.subtitle': 'Diğerleri kesinti sonrası uyarır. ORVO sorunları önceden tahmin eder.',
                 'toggle.monthly': 'Aylık', 'toggle.yearly': 'Yıllık', 'toggle.save': '%25 Tasarruf',
@@ -407,7 +409,7 @@
                 'free.f1': 'website', 'free.f2': 'dk kontrol', 'free.f3': 'gün geçmiş', 'free.f4': 'Email uyarıları',
                 'pro.name': 'Pro', 'pro.desc': 'Indie projeler için', 'pro.period': 'ay', 'pro.cta': 'Pro Başla',
                 'pro.f1': 'website', 'pro.f2': 'dk kontrol', 'pro.f3': 'gün geçmiş', 'pro.f4': 'Email uyarıları', 'pro.f5': 'SSL İzleme', 'pro.f7': 'Takım üyeleri',
-                'business.name': 'Business', 'business.desc': 'Büyüyen ekipler için', 'business.period': 'ay', 'business.cta': 'Business Başla', 'business.badge': 'EN POPÜLER ⭐',
+                'business.name': 'Business', 'business.desc': 'Büyüyen ekipler için', 'business.period': 'ay', 'business.cta': 'Business Başla', 'business.badge': 'EN POPÜLER',
                 'business.f1': 'website', 'business.f2': 'sn kontrol', 'business.f3': 'yıl geçmiş', 'business.f4': 'Email + Webhooks', 'business.f5': 'SSL + Domain İzleme', 'business.f8': 'takım üyesi', 'business.f9': 'API Erişimi', 'business.f10': 'Durum Sayfası',
                 'enterprise.name': 'Enterprise', 'enterprise.desc': 'Limitsiz ölçeklen', 'enterprise.period': 'ay+', 'enterprise.cta': 'Satışla İletişim',
                 'enterprise.f1': 'website / özel', 'enterprise.f2': 'sn kontrol', 'enterprise.f3': 'yıl geçmiş', 'enterprise.f4': 'Email + Webhooks + SMS', 'enterprise.f9': 'Sınırsız takım', 'enterprise.f10': 'SLA %99.9', 'enterprise.f11': 'Öncelikli destek', 'enterprise.f12': 'Beyaz etiket',
