@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORVO Pricing - AI-Powered Website Monitoring</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        :root { --purple: #8b5cf6; --cyan: #06b6d4; --green: #10b981; }
+        [data-theme="dark"] { --bg: #030305; --bg2: #0a0a0f; --bg3: #111118; --text: #ffffff; --text2: #94a3b8; --border: rgba(255,255,255,0.06); }
+        [data-theme="light"] { --bg: #fafbfc; --bg2: #ffffff; --bg3: #f1f5f9; --text: #0f172a; --text2: #64748b; --border: rgba(0,0,0,0.08); }
+        body { background: var(--bg); color: var(--text); }
+        .hero-gradient { background: radial-gradient(ellipse 100% 80% at 50% -30%, rgba(139,92,246,0.12), transparent), radial-gradient(ellipse 80% 60% at 100% 50%, rgba(6,182,212,0.08), transparent), var(--bg); }
+        .grad-text { background: linear-gradient(135deg, #a78bfa, #06b6d4, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass { background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); border: 1px solid var(--border); }
+        .card { background: var(--bg2); border: 1px solid var(--border); transition: all 0.3s ease; }
+        .card:hover { transform: translateY(-5px); border-color: rgba(139,92,246,0.3); }
+        .card-popular { background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(6,182,212,0.05)); border: 2px solid rgba(139,92,246,0.5); position: relative; }
+        .card-popular::before { content:''; position:absolute; inset:-2px; background: linear-gradient(135deg, #8b5cf6, #06b6d4); border-radius: inherit; z-index:-1; opacity:0.3; filter: blur(20px); }
+        .btn-primary { background: linear-gradient(135deg, #8b5cf6, #7c3aed); box-shadow: 0 4px 20px rgba(139,92,246,0.4); transition: all 0.3s; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139,92,246,0.5); }
+        .btn-secondary { border: 1px solid rgba(139,92,246,0.4); transition: all 0.3s; }
+        .btn-secondary:hover { background: rgba(139,92,246,0.1); }
+        .check { color: #10b981; }
+        .cross { color: #475569; }
+        .badge { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+        .badge-green { background: linear-gradient(135deg, #10b981, #06b6d4); }
+        .toggle-bg { background: var(--bg3); }
+        .toggle-active { background: linear-gradient(135deg, #8b5cf6, #06b6d4); }
+        .nav-blur { background: rgba(3,3,5,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        [data-theme="light"] .nav-blur { background: rgba(255,255,255,0.9); }
+        .lang-active { background: linear-gradient(135deg, #8b5cf6, #06b6d4); color: white; }
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-item.active .faq-content { max-height: 300px; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white font-bold">O</div>
+                    <span class="text-xl font-bold">ORVO</span>
+                </a>
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html#features" class="text-sm text-gray-400 hover:text-white transition" data-i18n="nav.features">Features</a>
+                    <a href="index.html#ai" class="text-sm text-gray-400 hover:text-white transition" data-i18n="nav.ai">88 AI Pro</a>
+                    <a href="#pricing" class="text-sm text-white font-semibold" data-i18n="nav.pricing">Pricing</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="hidden sm:flex items-center rounded-lg overflow-hidden border border-white/10">
+                        <button onclick="setLang('en')" data-lang="en" class="lang-btn px-3 py-1.5 text-xs font-semibold transition-all lang-active">EN</button>
+                        <button onclick="setLang('tr')" data-lang="tr" class="lang-btn px-3 py-1.5 text-xs font-semibold transition-all text-gray-400">TR</button>
+                    </div>
+                    <button onclick="toggleTheme()" class="w-10 h-10 rounded-xl glass flex items-center justify-center">
+                        <svg id="iconSun" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        <svg id="iconMoon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    </button>
+                    <a href="login.html" class="btn-primary px-5 py-2 rounded-xl text-sm font-semibold text-white" data-i18n="nav.start">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-gradient pt-32 pb-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
+                <span class="text-green-400 text-sm font-semibold" data-i18n="hero.badge">Simple, transparent pricing</span>
+            </div>
+            <h1 class="text-4xl lg:text-6xl font-black mb-6">
+                <span data-i18n="hero.title1">Pay for</span> <span class="grad-text" data-i18n="hero.title2">AI Power</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10" data-i18n="hero.subtitle">
+                Others alert you AFTER downtime. ORVO predicts it BEFORE. That's the AI difference.
+            </p>
+            
+            <!-- Billing Toggle -->
+            <div class="inline-flex items-center gap-4 p-1.5 rounded-full toggle-bg">
+                <button onclick="setBilling('monthly')" id="btnMonthly" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all toggle-active text-white" data-i18n="toggle.monthly">Monthly</button>
+                <button onclick="setBilling('yearly')" id="btnYearly" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all text-gray-400">
+                    <span data-i18n="toggle.yearly">Yearly</span>
+                    <span class="ml-2 px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded-full" data-i18n="toggle.save">Save 25%</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section id="pricing" class="py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Free -->
+                <div class="card rounded-3xl p-8">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold mb-2" data-i18n="free.name">Free</h3>
+                        <p class="text-sm text-gray-400" data-i18n="free.desc">For hobby projects</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-5xl font-black">$0</span>
+                        <span class="text-gray-400" data-i18n="free.period">/forever</span>
+                    </div>
+                    <a href="login.html" class="btn-secondary w-full py-3 rounded-xl text-sm font-semibold flex items-center justify-center mb-8" data-i18n="free.cta">Start Free</a>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span><strong>3</strong> <span data-i18n="free.f1">websites</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span><strong>5</strong> <span data-i18n="free.f2">min checks</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span><strong>7</strong> <span data-i18n="free.f3">days history</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="free.f4">Email alerts</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="free.f5">Basic dashboard</span></li>
+                        <li class="flex items-center gap-3 text-gray-500"><span class="cross">✗</span><span data-i18n="free.f6">88 AI Pro</span></li>
+                        <li class="flex items-center gap-3 text-gray-500"><span class="cross">✗</span><span data-i18n="free.f7">SSL Monitoring</span></li>
+                    </ul>
+                </div>
+
+                <!-- Pro -->
+                <div class="card rounded-3xl p-8">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold mb-2" data-i18n="pro.name">Pro</h3>
+                        <p class="text-sm text-gray-400" data-i18n="pro.desc">For freelancers</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-5xl font-black">$<span id="proPriceNum">19</span></span>
+                        <span class="text-gray-400">/<span data-i18n="pro.period">month</span></span>
+                    </div>
+                    <a href="login.html" class="btn-secondary w-full py-3 rounded-xl text-sm font-semibold flex items-center justify-center mb-8" data-i18n="pro.cta">Start Pro</a>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span><strong>20</strong> <span data-i18n="pro.f1">websites</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span><strong>1</strong> <span data-i18n="pro.f2">min checks</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span><strong>30</strong> <span data-i18n="pro.f3">days history</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="pro.f4">Slack, Discord, Webhooks</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span class="text-purple-400 font-semibold">88 AI Pro</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="pro.f6">SSL Monitoring</span></li>
+                        <li class="flex items-center gap-3 text-gray-500"><span class="cross">✗</span><span data-i18n="pro.f7">Team members</span></li>
+                    </ul>
+                </div>
+
+                <!-- Business (Most Popular) -->
+                <div class="card-popular rounded-3xl p-8 relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                        <span class="badge px-4 py-1.5 text-xs font-bold text-white rounded-full" data-i18n="business.badge">MOST POPULAR</span>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold mb-2" data-i18n="business.name">Business</h3>
+                        <p class="text-sm text-gray-400" data-i18n="business.desc">For growing teams</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-5xl font-black">$<span id="businessPriceNum">49</span></span>
+                        <span class="text-gray-400">/<span data-i18n="business.period">month</span></span>
+                    </div>
+                    <a href="login.html" class="btn-primary w-full py-3 rounded-xl text-sm font-bold flex items-center justify-center mb-8 text-white" data-i18n="business.cta">Start Business</a>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span class="font-semibold" data-i18n="business.f0">Unlimited websites</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span><strong>30</strong> <span data-i18n="business.f2">sec checks</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span><strong>1</strong> <span data-i18n="business.f3">year history</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="business.f4">All alert channels</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="business.f5">Custom status page</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span class="text-purple-400 font-semibold">88 AI Pro <span class="text-gray-400 font-normal">FULL</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="business.f6">SSL Monitoring</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span><strong>5</strong> <span data-i18n="business.f8">team members</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="business.f9">API Access</span></li>
+                    </ul>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="card rounded-3xl p-8">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold mb-2" data-i18n="enterprise.name">Enterprise</h3>
+                        <p class="text-sm text-gray-400" data-i18n="enterprise.desc">For large organizations</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-5xl font-black">$<span id="enterprisePriceNum">99</span></span>
+                        <span class="text-gray-400">/<span data-i18n="enterprise.period">month</span></span>
+                    </div>
+                    <a href="mailto:support@orvoai.app" class="btn-secondary w-full py-3 rounded-xl text-sm font-semibold flex items-center justify-center mb-8" data-i18n="enterprise.cta">Contact Sales</a>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span class="font-semibold" data-i18n="enterprise.f1">Everything in Business</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span><strong>10</strong> <span data-i18n="enterprise.f2">sec checks</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="enterprise.f4">Webhook + SMS alerts</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="enterprise.f5">White-label</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span class="text-purple-400 font-semibold">88 AI Pro <span class="text-gray-400 font-normal">+ Custom</span></span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="enterprise.f8">Multi-region monitoring</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span class="font-semibold" data-i18n="enterprise.f9">Unlimited team</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="enterprise.f10">SLA 99.9%</span></li>
+                        <li class="flex items-center gap-3"><span class="check">✓</span><span data-i18n="enterprise.f11">Priority support</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Value Section -->
+    <section class="py-20 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent"></div>
+        <div class="relative max-w-5xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-black mb-4" data-i18n="value.title">Why pay for AI?</h2>
+                <p class="text-gray-400" data-i18n="value.subtitle">The math speaks for itself</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Without AI -->
+                <div class="card rounded-3xl p-8 border-red-500/20">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-2xl">😰</div>
+                        <div>
+                            <h3 class="font-bold text-red-400" data-i18n="value.without">Without AI (Others)</h3>
+                            <p class="text-sm text-gray-500" data-i18n="value.without2">React after the fact</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-center gap-3 text-gray-400">
+                            <span class="text-red-400">✗</span>
+                            <span data-i18n="value.w1">Site goes down</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-400">
+                            <span class="text-red-400">✗</span>
+                            <span data-i18n="value.w2">30 minutes later: alert received</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-400">
+                            <span class="text-red-400">✗</span>
+                            <span data-i18n="value.w3">You wake up, start debugging</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-400">
+                            <span class="text-red-400">✗</span>
+                            <span data-i18n="value.w4">1 hour total downtime</span>
+                        </div>
+                        <div class="mt-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20">
+                            <div class="text-red-400 font-bold text-lg" data-i18n="value.wloss">Loss: $1,000+</div>
+                            <div class="text-xs text-gray-500" data-i18n="value.wloss2">Per incident (assuming $1000/hr revenue)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- With AI -->
+                <div class="card rounded-3xl p-8 border-green-500/20">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-2xl">🧠</div>
+                        <div>
+                            <h3 class="font-bold text-green-400" data-i18n="value.with">With 88 AI Pro</h3>
+                            <p class="text-sm text-gray-500" data-i18n="value.with2">Predict and prevent</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-center gap-3">
+                            <span class="text-green-400">✓</span>
+                            <span data-i18n="value.a1">AI detects declining health trend</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-green-400">✓</span>
+                            <span data-i18n="value.a2">30 min BEFORE: "Warning! Predicted drop"</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-green-400">✓</span>
+                            <span data-i18n="value.a3">You take action, scale servers</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-green-400">✓</span>
+                            <span data-i18n="value.a4">Zero downtime!</span>
+                        </div>
+                        <div class="mt-6 p-4 rounded-xl bg-green-500/10 border border-green-500/20">
+                            <div class="text-green-400 font-bold text-lg" data-i18n="value.asave">Saved: $1,000+</div>
+                            <div class="text-xs text-gray-500" data-i18n="value.asave2">Per incident prevented</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center glass rounded-2xl p-8">
+                <div class="text-4xl font-black text-green-400 mb-2" data-i18n="value.roi">1 prevented incident = Plan pays for itself</div>
+                <div class="text-gray-400" data-i18n="value.roi2">$49/month vs $1000+ saved. The choice is obvious.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20">
+        <div class="max-w-3xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-black" data-i18n="faq.title">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="faq-item glass rounded-2xl overflow-hidden" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between p-6 cursor-pointer">
+                        <h3 class="font-semibold pr-4" data-i18n="faq.q1.q">Can I change plans anytime?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="faq-content px-6"><p class="pb-6 text-gray-400" data-i18n="faq.q1.a">Yes! Upgrade or downgrade anytime. Changes take effect immediately and we'll prorate the difference.</p></div>
+                </div>
+                
+                <div class="faq-item glass rounded-2xl overflow-hidden" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between p-6 cursor-pointer">
+                        <h3 class="font-semibold pr-4" data-i18n="faq.q2.q">What payment methods do you accept?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="faq-content px-6"><p class="pb-6 text-gray-400" data-i18n="faq.q2.a">We accept all major credit cards (Visa, Mastercard, Amex) via Paddle. PayPal coming soon.</p></div>
+                </div>
+                
+                <div class="faq-item glass rounded-2xl overflow-hidden" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between p-6 cursor-pointer">
+                        <h3 class="font-semibold pr-4" data-i18n="faq.q3.q">Is there a free trial for paid plans?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="faq-content px-6"><p class="pb-6 text-gray-400" data-i18n="faq.q3.a">Yes! All paid plans come with a 14-day free trial. No credit card required to start.</p></div>
+                </div>
+
+                <div class="faq-item glass rounded-2xl overflow-hidden" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between p-6 cursor-pointer">
+                        <h3 class="font-semibold pr-4" data-i18n="faq.q5.q">Do you offer refunds?</h3>
+                        <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="faq-content px-6"><p class="pb-6 text-gray-400" data-i18n="faq.q5.a">Yes, we offer a 30-day money-back guarantee. If you're not satisfied, contact us for a full refund.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-cyan-500/10"></div>
+        <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-3xl lg:text-5xl font-black mb-6" data-i18n="cta.title">Start monitoring smarter today</h2>
+            <p class="text-xl text-gray-400 mb-10" data-i18n="cta.subtitle">Join teams who predict problems before they happen.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="login.html" class="btn-primary px-10 py-4 rounded-xl text-lg font-bold text-white inline-flex items-center justify-center gap-2">
+                    <span data-i18n="cta.start">Start Free Trial</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                </a>
+                <a href="mailto:support@orvoai.app" class="btn-secondary px-10 py-4 rounded-xl text-lg font-semibold inline-flex items-center justify-center gap-2" data-i18n="cta.contact">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm">O</div>
+                    <span class="font-bold">ORVO</span>
+                    <span class="text-gray-500 text-sm">© 2026</span>
+                </div>
+                <div class="flex items-center gap-6 text-sm text-gray-500">
+                    <a href="index.html" class="hover:text-white transition">Home</a>
+                    <a href="#pricing" class="hover:text-white transition">Pricing</a>
+                    <a href="terms.html" class="hover:text-white transition">Terms</a>
+                    <a href="privacy.html" class="hover:text-white transition">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Translations
+        const i18n = {
+            en: {
+                'nav.features': 'Features', 'nav.ai': '88 AI Pro', 'nav.pricing': 'Pricing', 'nav.start': 'Get Started',
+                'hero.badge': 'Simple, transparent pricing', 'hero.title1': 'Pay for', 'hero.title2': 'AI Power',
+                'hero.subtitle': 'Others alert you AFTER downtime. ORVO predicts it BEFORE. That\'s the AI difference.',
+                'toggle.monthly': 'Monthly', 'toggle.yearly': 'Yearly', 'toggle.save': 'Save 25%',
+                'free.name': 'Free', 'free.desc': 'For hobby projects', 'free.period': '/forever', 'free.cta': 'Start Free',
+                'free.f1': 'websites', 'free.f2': 'min checks', 'free.f3': 'days history', 'free.f4': 'Email alerts', 'free.f5': 'Basic dashboard', 'free.f6': '88 AI Pro', 'free.f7': 'Smart Alerts',
+                'pro.name': 'Pro', 'pro.desc': 'For freelancers', 'pro.period': 'month', 'pro.cta': 'Start Pro',
+                'pro.f1': 'websites', 'pro.f2': 'min checks', 'pro.f3': 'days history', 'pro.f4': 'Email + Slack', 'pro.f5': 'PDF Export', 'pro.f7': 'Basic Smart Alerts',
+                'business.name': 'Business', 'business.desc': 'For growing teams', 'business.period': 'month', 'business.cta': 'Start Business', 'business.badge': 'MOST POPULAR',
+                'business.f1': 'websites', 'business.f2': 'sec checks', 'business.f3': 'days history', 'business.f4': 'All alert channels', 'business.f5': 'Custom status page', 'business.f7': 'Smart Alerts FULL', 'business.f8': 'team members', 'business.f9': 'API Access',
+                'enterprise.name': 'Enterprise', 'enterprise.desc': 'For large organizations', 'enterprise.period': 'month', 'enterprise.cta': 'Contact Sales',
+                'enterprise.f1': 'Unlimited websites', 'enterprise.f2': 'sec checks', 'enterprise.f3': 'year history', 'enterprise.f4': 'All channels + Webhook + SMS', 'enterprise.f5': 'White-label', 'enterprise.f7': 'SSL Monitoring', 'enterprise.f8': 'Multi-region', 'enterprise.f9': 'Unlimited team', 'enterprise.f10': 'SLA 99.9%', 'enterprise.f11': 'Priority support',
+                'value.title': 'Why pay for AI?', 'value.subtitle': 'The math speaks for itself',
+                'value.without': 'Without AI (Others)', 'value.without2': 'React after the fact',
+                'value.w1': 'Site goes down', 'value.w2': '30 minutes later: alert received', 'value.w3': 'You wake up, start debugging', 'value.w4': '1 hour total downtime',
+                'value.wloss': 'Loss: $1,000+', 'value.wloss2': 'Per incident (assuming $1000/hr revenue)',
+                'value.with': 'With 88 AI Pro', 'value.with2': 'Predict and prevent',
+                'value.a1': 'AI detects declining health trend', 'value.a2': '30 min BEFORE: "Warning! Predicted drop"', 'value.a3': 'You take action, scale servers', 'value.a4': 'Zero downtime!',
+                'value.asave': 'Saved: $1,000+', 'value.asave2': 'Per incident prevented',
+                'value.roi': '1 prevented incident = Plan pays for itself', 'value.roi2': '$49/month vs $1000+ saved. The choice is obvious.',
+                'faq.title': 'Frequently Asked Questions',
+                'faq.q1.q': 'Can I change plans anytime?', 'faq.q1.a': 'Yes! Upgrade or downgrade anytime. Changes take effect immediately and we\'ll prorate the difference.',
+                'faq.q2.q': 'What payment methods do you accept?', 'faq.q2.a': 'We accept all major credit cards (Visa, Mastercard, Amex) via Paddle. PayPal coming soon.',
+                'faq.q3.q': 'Is there a free trial for paid plans?', 'faq.q3.a': 'Yes! All paid plans come with a 14-day free trial. No credit card required to start.',
+                'faq.q5.q': 'Do you offer refunds?', 'faq.q5.a': 'Yes, we offer a 30-day money-back guarantee. If you\'re not satisfied, contact us for a full refund.',
+                'cta.title': 'Start monitoring smarter today', 'cta.subtitle': 'Join teams who predict problems before they happen.', 'cta.start': 'Start Free Trial', 'cta.contact': 'Contact Sales'
+            },
+            tr: {
+                'nav.features': 'Özellikler', 'nav.ai': '88 AI Pro', 'nav.pricing': 'Fiyatlar', 'nav.start': 'Başla',
+                'hero.badge': 'Basit, şeffaf fiyatlandırma', 'hero.title1': 'AI Gücü', 'hero.title2': 'için öde',
+                'hero.subtitle': 'Diğerleri kesinti SONRASI uyarır. ORVO ÖNCEDEN tahmin eder. AI farkı budur.',
+                'toggle.monthly': 'Aylık', 'toggle.yearly': 'Yıllık', 'toggle.save': '%25 Tasarruf',
+                'free.name': 'Ücretsiz', 'free.desc': 'Hobi projeleri için', 'free.period': '/sonsuza dek', 'free.cta': 'Ücretsiz Başla',
+                'free.f1': 'website', 'free.f2': 'dk kontrol', 'free.f3': 'gün geçmiş', 'free.f4': 'Email uyarıları', 'free.f5': 'Temel dashboard', 'free.f6': '88 AI Pro', 'free.f7': 'Akıllı Uyarılar',
+                'pro.name': 'Pro', 'pro.desc': 'Freelancerlar için', 'pro.period': 'ay', 'pro.cta': 'Pro Başla',
+                'pro.f1': 'website', 'pro.f2': 'dk kontrol', 'pro.f3': 'gün geçmiş', 'pro.f4': 'Email + Slack', 'pro.f5': 'PDF Dışa Aktarma', 'pro.f7': 'Temel Akıllı Uyarılar',
+                'business.name': 'Business', 'business.desc': 'Büyüyen ekipler için', 'business.period': 'ay', 'business.cta': 'Business Başla', 'business.badge': 'EN POPÜLER',
+                'business.f1': 'website', 'business.f2': 'sn kontrol', 'business.f3': 'gün geçmiş', 'business.f4': 'Tüm uyarı kanalları', 'business.f5': 'Özel durum sayfası', 'business.f7': 'Akıllı Uyarılar TAM', 'business.f8': 'takım üyesi', 'business.f9': 'API Erişimi',
+                'enterprise.name': 'Enterprise', 'enterprise.desc': 'Büyük organizasyonlar için', 'enterprise.period': 'ay', 'enterprise.cta': 'Satışla İletişim',
+                'enterprise.f1': 'Sınırsız website', 'enterprise.f2': 'sn kontrol', 'enterprise.f3': 'yıl geçmiş', 'enterprise.f4': 'Tüm kanallar + Webhook + SMS', 'enterprise.f5': 'Beyaz etiket', 'enterprise.f7': 'SSL İzleme', 'enterprise.f8': 'Çoklu bölge', 'enterprise.f9': 'Sınırsız takım', 'enterprise.f10': 'SLA %99.9', 'enterprise.f11': 'Öncelikli destek',
+                'value.title': 'Neden AI için ödeme yapmalı?', 'value.subtitle': 'Matematik kendini anlatıyor',
+                'value.without': 'AI Olmadan (Diğerleri)', 'value.without2': 'Olay sonrası tepki',
+                'value.w1': 'Site çöküyor', 'value.w2': '30 dakika sonra: uyarı geliyor', 'value.w3': 'Uyanıyorsunuz, debug başlıyor', 'value.w4': 'Toplam 1 saat kesinti',
+                'value.wloss': 'Kayıp: $1,000+', 'value.wloss2': 'Olay başına (saatlik $1000 gelir varsayımıyla)',
+                'value.with': '88 AI Pro ile', 'value.with2': 'Tahmin et ve önle',
+                'value.a1': 'AI düşen sağlık trendini tespit ediyor', 'value.a2': '30 dk ÖNCE: "Uyarı! Düşüş tahmin edildi"', 'value.a3': 'Aksiyon alıyorsunuz, sunucuları ölçeklendiriyorsunuz', 'value.a4': 'Sıfır kesinti!',
+                'value.asave': 'Kurtarılan: $1,000+', 'value.asave2': 'Önlenen olay başına',
+                'value.roi': '1 önlenen olay = Plan kendini amorti ediyor', 'value.roi2': '$49/ay vs $1000+ tasarruf. Seçim açık.',
+                'faq.title': 'Sıkça Sorulan Sorular',
+                'faq.q1.q': 'Planları istediğim zaman değiştirebilir miyim?', 'faq.q1.a': 'Evet! İstediğiniz zaman yükseltin veya düşürün. Değişiklikler anında geçerli olur ve farkı orantılı olarak hesaplarız.',
+                'faq.q2.q': 'Hangi ödeme yöntemlerini kabul ediyorsunuz?', 'faq.q2.a': 'Paddle üzerinden tüm büyük kredi kartlarını (Visa, Mastercard, Amex) kabul ediyoruz. PayPal yakında.',
+                'faq.q3.q': 'Ücretli planlar için deneme süresi var mı?', 'faq.q3.a': 'Evet! Tüm ücretli planlar 14 günlük ücretsiz deneme ile gelir. Başlamak için kredi kartı gerekmez.',
+                'faq.q5.q': 'İade yapıyor musunuz?', 'faq.q5.a': 'Evet, 30 günlük para iade garantisi sunuyoruz. Memnun kalmazsanız, tam iade için bizimle iletişime geçin.',
+                'cta.title': 'Bugün daha akıllı izlemeye başlayın', 'cta.subtitle': 'Sorunları olmadan önce tahmin eden ekiplere katılın.', 'cta.start': 'Ücretsiz Denemeyi Başlat', 'cta.contact': 'Satışla İletişim'
+            }
+        };
+
+        let currentLang = localStorage.getItem('orvo-lang') || 'en';
+        let billing = 'monthly';
+
+        const prices = {
+            monthly: { pro: 19, business: 49, enterprise: 99 },
+            yearly: { pro: 14, business: 37, enterprise: 74 }
+        };
+
+        function setLang(l) {
+            currentLang = l;
+            localStorage.setItem('orvo-lang', l);
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[l][key]) el.textContent = i18n[l][key];
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('lang-active', btn.getAttribute('data-lang') === l);
+                btn.classList.toggle('text-gray-400', btn.getAttribute('data-lang') !== l);
+            });
+        }
+
+        function setBilling(b) {
+            billing = b;
+            document.getElementById('proPriceNum').textContent = prices[b].pro;
+            document.getElementById('businessPriceNum').textContent = prices[b].business;
+            document.getElementById('enterprisePriceNum').textContent = prices[b].enterprise;
+            
+            document.getElementById('btnMonthly').classList.toggle('toggle-active', b === 'monthly');
+            document.getElementById('btnMonthly').classList.toggle('text-white', b === 'monthly');
+            document.getElementById('btnMonthly').classList.toggle('text-gray-400', b !== 'monthly');
+            document.getElementById('btnYearly').classList.toggle('toggle-active', b === 'yearly');
+            document.getElementById('btnYearly').classList.toggle('text-white', b === 'yearly');
+            document.getElementById('btnYearly').classList.toggle('text-gray-400', b !== 'yearly');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            localStorage.setItem('orvo-theme', isDark ? 'light' : 'dark');
+            document.getElementById('iconSun').classList.toggle('hidden', !isDark);
+            document.getElementById('iconMoon').classList.toggle('hidden', isDark);
+        }
+
+        function toggleFaq(el) {
+            document.querySelectorAll('.faq-item').forEach(item => { if (item !== el) item.classList.remove('active'); });
+            el.classList.toggle('active');
+        }
+        
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            setLang(currentLang);
+            const t = localStorage.getItem('orvo-theme');
+            if (t) {
+                document.documentElement.setAttribute('data-theme', t);
+                document.getElementById('iconSun').classList.toggle('hidden', t === 'light');
+                document.getElementById('iconMoon').classList.toggle('hidden', t === 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
