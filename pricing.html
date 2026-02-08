@@ -57,7 +57,7 @@
                     <a href="#pricing" class="text-sm text-white font-semibold" data-i18n="nav.pricing">Pricing</a>
                 </div>
                 <div class="flex items-center gap-2 sm:gap-4">
-                    <div class="hidden sm:flex items-center rounded-lg overflow-hidden border border-white/10">
+                    <div class="flex items-center rounded-lg overflow-hidden border border-white/10">
                         <button onclick="setLang('en')" data-lang="en" class="lang-btn px-3 py-1.5 text-xs font-semibold transition-all lang-active">EN</button>
                         <button onclick="setLang('tr')" data-lang="tr" class="lang-btn px-3 py-1.5 text-xs font-semibold transition-all text-gray-400">TR</button>
                     </div>
@@ -491,3 +491,10 @@
             const t = localStorage.getItem('orvo-theme');
             if (t) {
                 document.documentElement.setAttribute('data-theme', t);
+                document.getElementById('iconSun').classList.toggle('hidden', t === 'light');
+                document.getElementById('iconMoon').classList.toggle('hidden', t === 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
