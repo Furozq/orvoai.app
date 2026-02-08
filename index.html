@@ -326,7 +326,7 @@
                     <svg class="w-7 h-7 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
                 </div>
                 <h3 class="text-xl font-semibold mb-3" data-i18n="feat.f3.t">Instant Alerts</h3>
-                <p class="text-2" data-i18n="feat.f3.d">Email, Slack, Webhooks - get notified instantly</p>
+                <p class="text-2" data-i18n="feat.f3.d">Email & Webhooks - get notified instantly</p>
             </div>
             
             <!-- Feature 4 -->
@@ -354,6 +354,119 @@
                 </div>
                 <h3 class="text-xl font-semibold mb-3" data-i18n="feat.f6.t">PWA Support</h3>
                 <p class="text-2" data-i18n="feat.f6.d">Install as app, works offline</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bot Detection Section -->
+<section id="detection" class="py-24 relative">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 mb-6">
+                <span class="text-sm text-orange-300">🛡️ Auto Detection</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="det.title">Bot Protection Detection</h2>
+            <p class="text-lg text-2 max-w-2xl mx-auto" data-i18n="det.sub">We automatically detect 10 different protection systems on your sites.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <!-- Cloudflare -->
+            <div class="card p-5 text-center tilt-card reveal group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-2xl">☁️</span>
+                </div>
+                <h4 class="font-semibold text-sm">Cloudflare</h4>
+                <p class="text-xs text-2 mt-1">WAF & CDN</p>
+            </div>
+            
+            <!-- reCAPTCHA -->
+            <div class="card p-5 text-center tilt-card reveal group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-2xl">🔐</span>
+                </div>
+                <h4 class="font-semibold text-sm">reCAPTCHA</h4>
+                <p class="text-xs text-2 mt-1">v2 & v3</p>
+            </div>
+            
+            <!-- hCaptcha -->
+            <div class="card p-5 text-center tilt-card reveal group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-2xl">🤖</span>
+                </div>
+                <h4 class="font-semibold text-sm">hCaptcha</h4>
+                <p class="text-xs text-2 mt-1">Privacy first</p>
+            </div>
+            
+            <!-- Akamai -->
+            <div class="card p-5 text-center tilt-card reveal group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-2xl">🌐</span>
+                </div>
+                <h4 class="font-semibold text-sm">Akamai</h4>
+                <p class="text-xs text-2 mt-1">Bot Manager</p>
+            </div>
+            
+            <!-- PerimeterX -->
+            <div class="card p-5 text-center tilt-card reveal group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-2xl">🔷</span>
+                </div>
+                <h4 class="font-semibold text-sm">PerimeterX</h4>
+                <p class="text-xs text-2 mt-1">Human Challenge</p>
+            </div>
+            
+            <!-- DataDome -->
+            <div class="card p-5 text-center tilt-card reveal group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-2xl">🛡️</span>
+                </div>
+                <h4 class="font-semibold text-sm">DataDome</h4>
+                <p class="text-xs text-2 mt-1">AI Protection</p>
+            </div>
+            
+            <!-- Imperva -->
+            <div class="card p-5 text-center tilt-card reveal group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-red-500/20 to-red-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-2xl">🏰</span>
+                </div>
+                <h4 class="font-semibold text-sm">Imperva</h4>
+                <p class="text-xs text-2 mt-1">Incapsula</p>
+            </div>
+            
+            <!-- Kasada -->
+            <div class="card p-5 text-center tilt-card reveal group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-pink-500/20 to-pink-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-2xl">🔮</span>
+                </div>
+                <h4 class="font-semibold text-sm">Kasada</h4>
+                <p class="text-xs text-2 mt-1">Polyform</p>
+            </div>
+            
+            <!-- Shape -->
+            <div class="card p-5 text-center tilt-card reveal group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-2xl">🔶</span>
+                </div>
+                <h4 class="font-semibold text-sm">Shape</h4>
+                <p class="text-xs text-2 mt-1">F5 Security</p>
+            </div>
+            
+            <!-- Queue-it -->
+            <div class="card p-5 text-center tilt-card reveal group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-teal-500/20 to-teal-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-2xl">⏳</span>
+                </div>
+                <h4 class="font-semibold text-sm">Queue-it</h4>
+                <p class="text-xs text-2 mt-1">Virtual Queue</p>
+            </div>
+        </div>
+        
+        <!-- Detection Info -->
+        <div class="mt-12 text-center reveal">
+            <div class="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-orange-500/10 border border-orange-500/20">
+                <span class="text-2xl">🎯</span>
+                <span class="text-sm" data-i18n="det.info">Auto-detected on every check • Shown in dashboard • No config needed</span>
             </div>
         </div>
     </div>
@@ -554,10 +667,11 @@ const T={
         'feat.title':'Core Features','feat.sub':'Everything you need for professional monitoring',
         'feat.f1.t':'88 AI','feat.f1.d':'Predict downtime 5min to 1hr ahead with AI',
         'feat.f2.t':'SSL Monitoring','feat.f2.d':'Track certificate expiry with alerts',
-        'feat.f3.t':'Instant Alerts','feat.f3.d':'Email, Slack, Webhooks - get notified instantly',
+        'feat.f3.t':'Instant Alerts','feat.f3.d':'Email & Webhooks - get notified instantly',
         'feat.f4.t':'Status Pages','feat.f4.d':'Public status page for your users',
         'feat.f5.t':'Bot Detection','feat.f5.d':'10 protection systems auto-detected',
         'feat.f6.t':'PWA Support','feat.f6.d':'Install as app, works offline',
+        'det.title':'Bot Protection Detection','det.sub':'We automatically detect 10 different protection systems on your sites.','det.info':'Auto-detected on every check • Shown in dashboard • No config needed',
         'ai.sub':'Multi-factor prediction engine that forecasts your site\'s health score.',
         'ai.f1.t':'EMA Analysis','ai.f1.d':'Trend detection with recent data weight',
         'ai.f2.t':'Linear Regression','ai.f2.d':'Statistical future predictions',
@@ -579,10 +693,11 @@ const T={
         'feat.title':'Temel Özellikler','feat.sub':'Profesyonel izleme için gereken her şey',
         'feat.f1.t':'88 AI','feat.f1.d':'AI ile 5dk-1sa önceden kesinti tahmin et',
         'feat.f2.t':'SSL İzleme','feat.f2.d':'Sertifika süresini takip et, uyarı al',
-        'feat.f3.t':'Anında Uyarılar','feat.f3.d':'Email, Slack, Webhooks - anında bildirim',
+        'feat.f3.t':'Anında Uyarılar','feat.f3.d':'Email & Webhooks - anında bildirim',
         'feat.f4.t':'Durum Sayfası','feat.f4.d':'Kullanıcılarınız için public status page',
         'feat.f5.t':'Bot Tespiti','feat.f5.d':'10 koruma sistemi otomatik tespit',
         'feat.f6.t':'PWA Desteği','feat.f6.d':'Uygulama olarak yükle, çevrimdışı çalışır',
+        'det.title':'Bot Koruma Tespiti','det.sub':'Sitelerinizde 10 farklı koruma sistemini otomatik tespit ediyoruz.','det.info':'Her kontrolde otomatik tespit • Dashboard\'da gösterilir • Ayar gerektirmez',
         'ai.sub':'Sitenizin sağlık skorunu tahmin eden çok faktörlü motor.',
         'ai.f1.t':'EMA Analizi','ai.f1.d':'Son verilere ağırlıklı trend tespiti',
         'ai.f2.t':'Doğrusal Regresyon','ai.f2.d':'İstatistiksel gelecek tahminleri',
